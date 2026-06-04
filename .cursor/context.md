@@ -36,7 +36,7 @@ windsurf-project/
 - [x] Tailwind + custom color palette — Status: built & tested
 - [x] Architecture Blueprint (UX + System + Platform + Infra + Security) — Status: adopted in `.cursor/`
 - [x] Welcome / House Rules section — Status: built & tested
-- [ ] Utilities Dashboard section — Status: pending
+- [x] Utilities Dashboard section — Status: built & tested
 - [ ] Contact & Action Hub section — Status: pending
 - [ ] Downloadable artifacts — Status: pending
 - [ ] Responsive polish — Status: pending

@@ -1,5 +1,6 @@
 import WelcomeSection from "./sections/welcome";
 import UtilitiesSection from "./sections/utilities";
+import ContactSection from "./sections/contact";
 
 export default function Home() {
   return (
@@ -17,11 +18,7 @@ export default function Home() {
 
       <WelcomeSection />
       <UtilitiesSection />
-
-      {/* Placeholder for remaining sections */}
-      <section className="py-12 px-4 text-center text-slate-400">
-        <p>Contact section coming next...</p>
-      </section>
+      <ContactSection />
     </main>
   );
 }
