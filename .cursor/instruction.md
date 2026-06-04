@@ -1,21 +1,19 @@
 # Instruction
 
-## Current Task (Epic Sprint 3: Silent Failure Fix — Catch Blocks)
-Replace empty catch blocks with user-visible error handling. Follow agent swarm governance.
+## Current Task (Epic Sprint 4: Testing Infrastructure)
+Add minimal but complete testing pipeline. Follow agent swarm governance.
 
-> In `app/sections/contact.tsx`, the `handleCopy` function has an empty catch block that silently fails when clipboard copy doesn't work. Add an `error` state to `ContactCard` alongside the existing `copied` state. When `navigator.clipboard.writeText` throws, set `error` to `true` and show a visible "Copy failed — number is selectable above" message below the copy button. Auto-clear the error after 3 seconds. Use a red/amber styled message. The `error` state should be mutually exclusive with `copied` (clear one when the other is set). Do not change any other behavior.
+> Install Jest, React Testing Library, and jsdom. Configure `jest.config.ts` for Next.js 15 with App Router. Add an `npm test` script to `package.json`. Write smoke tests: (1) `page.tsx` renders without crashing, (2) `WelcomeSection` renders all 4 rule cards, (3) `UtilitiesSection` table shows correct totals, (4) `ContactSection` renders all 3 provider cards. All tests must pass. Do not change component behavior.
 
 ## Scope
-- **In Scope**: `app/sections/contact.tsx` (ContactCard component)
-- **Out of Scope**: Other components, data files, shared Icon component
+- **In Scope**: `package.json` (add test script), `jest.config.ts`, `__tests__/page.test.tsx`, `__tests__/welcome.test.tsx`, `__tests__/utilities.test.tsx`, `__tests__/contact.test.tsx`
+- **Out of Scope**: Component behavior changes, data files
 
 ## Dependencies
-- Requires: Sprint 2 completed & pushed (confirmed)
-- Blocks: Sprint 4 (Testing Infrastructure)
+- Requires: Sprint 3 completed & pushed (confirmed)
+- Blocks: Sprint 5 (ESLint & Quality Gates)
 
 ## Expected Output
-- Error state added to ContactCard
-- Visible error message shown on copy failure
-- Error auto-clears after 3 seconds
-- `npm run build` passes with zero errors
+- `npm test` runs and all 4 test suites pass
+- `npm run build` still passes with zero errors
 - Zero bugs after `/code check` and `/bug checker` iteration
