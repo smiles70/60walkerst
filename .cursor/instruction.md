@@ -1,21 +1,21 @@
 # Instruction
 
-## Current Task (Epic Sprint 2: DRY Refactor — Shared Icon Component)
-Eliminate the duplicated `Icon` component across 3 section files. Follow agent swarm governance.
+## Current Task (Epic Sprint 3: Silent Failure Fix — Catch Blocks)
+Replace empty catch blocks with user-visible error handling. Follow agent swarm governance.
 
-> Create `components/ui/icon.tsx` containing a single shared `Icon` component that aggregates ALL icon definitions from `welcome.tsx`, `utilities.tsx`, and `contact.tsx`. The component must accept `name: string` and optional `className?: string` props and return `React.ReactElement | null`. Import and use this shared `Icon` in all three section files, removing the local `Icon` function from each. Ensure all icons have `aria-hidden="true"` for accessibility. Do not change any visual output or behavior.
+> In `app/sections/contact.tsx`, the `handleCopy` function has an empty catch block that silently fails when clipboard copy doesn't work. Add an `error` state to `ContactCard` alongside the existing `copied` state. When `navigator.clipboard.writeText` throws, set `error` to `true` and show a visible "Copy failed — number is selectable above" message below the copy button. Auto-clear the error after 3 seconds. Use a red/amber styled message. The `error` state should be mutually exclusive with `copied` (clear one when the other is set). Do not change any other behavior.
 
 ## Scope
-- **In Scope**: New file `components/ui/icon.tsx`, modifications to `app/sections/welcome.tsx`, `app/sections/utilities.tsx`, `app/sections/contact.tsx`
-- **Out of Scope**: Data files, page.tsx, layout.tsx, globals.css
+- **In Scope**: `app/sections/contact.tsx` (ContactCard component)
+- **Out of Scope**: Other components, data files, shared Icon component
 
 ## Dependencies
-- Requires: Sprint 1 completed & pushed (confirmed)
-- Blocks: Sprint 3 (Silent Failure Fix)
+- Requires: Sprint 2 completed & pushed (confirmed)
+- Blocks: Sprint 4 (Testing Infrastructure)
 
 ## Expected Output
-- Single `Icon` component in `components/ui/icon.tsx`
-- All 3 section files import shared `Icon`
-- No local `Icon` functions remain in section files
+- Error state added to ContactCard
+- Visible error message shown on copy failure
+- Error auto-clears after 3 seconds
 - `npm run build` passes with zero errors
 - Zero bugs after `/code check` and `/bug checker` iteration

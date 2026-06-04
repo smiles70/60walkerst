@@ -13,14 +13,18 @@ import {
 
 function ContactCard({ provider }: { provider: ContactProvider }) {
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleCopy = async () => {
     try {
+      setError(false);
       await navigator.clipboard.writeText(provider.phone);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* graceful fallback: number remains selectable and clickable */
+      setCopied(false);
+      setError(true);
+      setTimeout(() => setError(false), 3000);
     }
   };
 
@@ -64,9 +68,17 @@ function ContactCard({ provider }: { provider: ContactProvider }) {
           )}
         </button>
       </div>
+      {error && (
+        <div className="mt-2 flex items-center gap-2 rounded-lg bg-amber-50 border-2 border-amber px-3 py-2">
+          <Icon name="AlertTriangle" className="w-4 h-4 text-amber shrink-0" />
+          <p className="text-sm text-amber-800">
+            Copy failed — number is selectable above
+          </p>
+        </div>
+      )}
       {/* Screen reader live region for copy feedback */}
       <span className="sr-only" aria-live="polite" aria-atomic="true">
-        {copied ? `${provider.name} phone number copied to clipboard` : ""}
+        {copied ? `${provider.name} phone number copied to clipboard` : error ? `Copy failed for ${provider.name}` : ""}
       </span>
     </div>
   );
