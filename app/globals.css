@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #1e3a5f;
+  --color-navy-50: #e8eef4;
+  --color-navy-100: #d1dde9;
+  --color-navy-200: #a3bbcf;
+  --color-navy-300: #7599b6;
+  --color-navy-400: #47779c;
+  --color-navy-500: #1e3a5f;
+  --color-navy-600: #182f4c;
+  --color-navy-700: #12243a;
+  --color-navy-800: #0c1827;
+  --color-navy-900: #060c13;
+
+  --color-green: #4a9c2d;
+  --color-green-50: #edf7e9;
+  --color-green-100: #dbefd3;
+  --color-green-200: #b7dfa7;
+  --color-green-300: #93cf7b;
+  --color-green-400: #6fbf4f;
+  --color-green-500: #4a9c2d;
+  --color-green-600: #3b7d24;
+  --color-green-700: #2c5e1b;
+  --color-green-800: #1d3f12;
+  --color-green-900: #0f1f09;
+
+  --color-amber: #f59e0b;
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+}
+
+body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #1e3a5f;
+}
