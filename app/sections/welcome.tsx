@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   houseRules,
   welcomeTitle,
@@ -41,24 +41,6 @@ function Icon({ name, className }: { name: string; className?: string }) {
 }
 
 function InfoCard({ category }: { category: RuleCategory }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    if (category.id === "wifi") {
-      const password = category.items.find((i) => i.startsWith("Password:"));
-      if (password) {
-        const pw = password.replace("Password: ", "");
-        try {
-          await navigator.clipboard.writeText(pw);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        } catch {
-          /* graceful fallback: text remains selectable */
-        }
-      }
-    }
-  };
-
   const baseCardClasses = category.highlight
     ? "border-green bg-green-50"
     : "border-navy-200 bg-white hover:border-green";
@@ -83,28 +65,6 @@ function InfoCard({ category }: { category: RuleCategory }) {
           </li>
         ))}
       </ul>
-      {category.id === "wifi" && (
-        <button
-          onClick={handleCopy}
-          aria-label="Copy Wi-Fi password to clipboard"
-          className="mt-3 w-full py-1.5 px-3 rounded-lg bg-navy text-white text-sm font-medium
-                     hover:bg-navy-600 active:bg-navy-700 transition-colors
-                     focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
-        >
-          {copied ? (
-            <>
-              <span aria-hidden="true">Copied!</span>
-              <span className="sr-only">Wi-Fi password copied to clipboard</span>
-            </>
-          ) : (
-            "Copy Password"
-          )}
-        </button>
-      )}
-      {/* Screen reader live region for copy feedback */}
-      <span className="sr-only" aria-live="polite" aria-atomic="true">
-        {copied ? "Wi-Fi password copied to clipboard" : ""}
-      </span>
     </div>
   );
 }

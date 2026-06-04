@@ -45,7 +45,7 @@ export const houseRules: RuleCategory[] = [
     title: "Wi-Fi Info",
     items: [
       "Network: WalkerSt60",
-      "Password: HomeSweet123",
+      "Password: Ask a roommate for the current Wi-Fi password",
     ],
     highlight: true,
   },
