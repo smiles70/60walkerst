@@ -5,6 +5,60 @@ export interface Attachment {
   url: string;
 }
 
+export interface ApplicationAddress {
+  label: string;
+  street: string;
+  cityState: string;
+  type: string;
+  rent: string;
+  reasonForMoving: string;
+  landlordName: string;
+  landlordPhone: string;
+}
+
+export interface ApplicationJob {
+  employer: string;
+  jobTitle: string;
+  period: string;
+  income: string;
+  isCurrent: boolean;
+  referenceName: string;
+  referencePhone: string;
+}
+
+export interface ApplicationDetails {
+  dateOfBirth: string;
+  applicationStatus: string;
+  desiredMoveInDate: string;
+  totalOccupants: string;
+  selfReportedIncome: string;
+  animals: string;
+  smoking: string;
+  addresses: ApplicationAddress[];
+  totalIncome: string;
+  jobs: ApplicationJob[];
+  financialInstitution: string;
+  emergencyContact: {
+    name: string;
+    relationship: string;
+    phone: string;
+  };
+  vehicle: {
+    make: string;
+    color: string;
+    year: string;
+  };
+  backgroundQuestions: {
+    question: string;
+    answer: string;
+  }[];
+  otherInfo: {
+    specialRequests: string;
+    howDidYouHear: string;
+    comments: string;
+  };
+}
+
 export interface ScreeningReport {
   creditScore: number;
   creditScoreLabel: string;
@@ -61,6 +115,7 @@ export interface Applicant {
   phone: string;
   attachments: Attachment[];
   notes: string;
+  applicationDetails: ApplicationDetails;
   screeningReport: ScreeningReport;
 }
 
@@ -109,6 +164,97 @@ export const applicants: Applicant[] = [
       },
     ],
     notes: "Application complete. Screening report received.",
+    applicationDetails: {
+      dateOfBirth: "June 19, 1996",
+      applicationStatus: "Complete",
+      desiredMoveInDate: "08/01/2026",
+      totalOccupants: "1 adult | 0 minor",
+      selfReportedIncome: "$3,600 / month",
+      animals: "No",
+      smoking: "No",
+      addresses: [
+        {
+          label: "Current Address",
+          street: "29 Boniface Dr",
+          cityState: "Pine Bush, NY 12566",
+          type: "Rental",
+          rent: "$600 rent / month",
+          reasonForMoving: "Cutting down on roommates",
+          landlordName: "Abhi",
+          landlordPhone: "(845) 905-5220",
+        },
+        {
+          label: "Past Address",
+          street: "2 maple ave",
+          cityState: "Newburgh, NY 12550",
+          type: "Rental",
+          rent: "$375 rent / month",
+          reasonForMoving: "Landlord wanted less tenants",
+          landlordName: "Lilly Alvarado",
+          landlordPhone: "(845) 542-3316",
+        },
+      ],
+      totalIncome: "$3,600.00 / month",
+      jobs: [
+        {
+          employer: "Garnet health",
+          jobTitle: "Cardiology technician",
+          period: "Jan 2023 - Present",
+          income: "$2,000.00 / month",
+          isCurrent: true,
+          referenceName: "Jessica santos",
+          referencePhone: "(845) 399-2153",
+        },
+        {
+          employer: "Northwell health Kingston medical mall clinic",
+          jobTitle: "EEG/ekg technician",
+          period: "Oct 2025 - Present",
+          income: "$1,600.00 / month",
+          isCurrent: true,
+          referenceName: "Jonlyn Maraday",
+          referencePhone: "(475) 237-0071",
+        },
+        {
+          employer: "Garnet health -Catskil",
+          jobTitle: "EKG technician",
+          period: "Dec 2021 - Dec 2022",
+          income: "$1,000.00 / month",
+          isCurrent: false,
+          referenceName: "Dina Norman",
+          referencePhone: "8455274403",
+        },
+      ],
+      financialInstitution: "N/A",
+      emergencyContact: {
+        name: "Alda Carnell",
+        relationship: "Mother",
+        phone: "(314) 368-8380",
+      },
+      vehicle: {
+        make: "Volkswagen Tiguan",
+        color: "Black",
+        year: "2019",
+      },
+      backgroundQuestions: [
+        {
+          question: "Have you (or any person you have named on this application) ever been evicted from a tenancy or left owing money?",
+          answer: "No",
+        },
+        {
+          question: "Have you or any member of your household ever been convicted of (or pled guilty or no contest to) any criminal offense(s) other than a minor infraction(s)?",
+          answer: "No",
+        },
+        {
+          question: "Have you (or any person you have named on this application) ever filed for or been involved in a bankruptcy, been foreclosed on, or been a defendant in a civil suit?",
+          answer: "No",
+        },
+      ],
+      otherInfo: {
+        specialRequests: "No",
+        howDidYouHear: "Apartments.com",
+        comments: "No response given.",
+      },
+    },
     screeningReport: {
       creditScore: 661,
       creditScoreLabel: "Good",

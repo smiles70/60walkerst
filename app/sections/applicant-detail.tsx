@@ -183,40 +183,166 @@ export default function ApplicantDetail({
       )}
 
       {/* Application Tab */}
-      {activeTab === "application" && (
-        <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
-          <h3 className="text-lg font-bold text-navy mb-4">Application Details</h3>
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Full Name</p>
-                <p className="text-navy font-medium">{applicant.name}</p>
+      {activeTab === "application" && applicant.applicationDetails && (
+        <div className="space-y-6">
+          {/* Personal Info */}
+          <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 rounded-full bg-navy flex items-center justify-center">
+                <span className="text-white font-bold text-lg">{applicant.initials}</span>
               </div>
               <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email</p>
-                <p className="text-navy font-medium">{applicant.email}</p>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Phone</p>
-                <p className="text-navy font-medium">{applicant.phone}</p>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Move-in Date</p>
-                <p className="text-navy font-medium">{applicant.moveInDate}</p>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Submitted</p>
-                <p className="text-navy font-medium">{applicant.submittedDate}</p>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Property</p>
-                <p className="text-navy font-medium">{applicant.address}</p>
+                <h3 className="text-xl font-bold text-navy">{applicant.name}</h3>
+                <p className="text-sm text-slate-500">Born on {applicant.applicationDetails.dateOfBirth}</p>
               </div>
             </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { label: "Application", value: applicant.applicationDetails.applicationStatus, badge: true },
+                { label: "Desired Move-In", value: applicant.applicationDetails.desiredMoveInDate },
+                { label: "Total Occupants", value: applicant.applicationDetails.totalOccupants },
+                { label: "Self-Reported Income", value: applicant.applicationDetails.selfReportedIncome },
+                { label: "Animals", value: applicant.applicationDetails.animals },
+                { label: "Smoking", value: applicant.applicationDetails.smoking },
+              ].map((item) => (
+                <div key={item.label} className="p-3 rounded-xl bg-navy-50">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{item.label}</p>
+                  {item.badge ? (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green text-white">
+                      {item.value}
+                    </span>
+                  ) : (
+                    <p className="text-navy font-medium text-sm">{item.value}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Addresses */}
+          <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
+            <h3 className="text-lg font-bold text-navy mb-2">Addresses</h3>
+            <p className="text-sm text-slate-500 mb-4">We asked this renter for at least 3 years of rental history.</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {applicant.applicationDetails.addresses.map((addr, i) => (
+                <div key={i} className="p-4 rounded-xl border-2 border-navy-100 bg-white">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{addr.label}</p>
+                  <p className="text-navy font-bold">{addr.street}</p>
+                  <p className="text-sm text-slate-500">{addr.cityState}</p>
+                  <p className="text-xs text-slate-400 mt-1">{addr.type} · {addr.rent}</p>
+                  <div className="mt-3 pt-3 border-t border-navy-50">
+                    <p className="text-xs text-slate-500 mb-1">
+                      <span className="font-bold text-navy">Reason for Moving:</span> {addr.reasonForMoving}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                      <span className="font-bold text-navy">Landlord:</span> {addr.landlordName}
+                    </p>
+                    <p className="text-xs text-slate-500">{addr.landlordPhone}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Income & Employment */}
+          <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
+            <h3 className="text-lg font-bold text-navy mb-2">Income</h3>
+            <p className="text-sm text-slate-500 mb-4">We asked for 5 years of employment history, if applicable.</p>
+
+            <div className="mb-6 p-4 rounded-xl bg-green-50 border-2 border-green text-center">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Income</p>
+              <p className="text-3xl font-bold text-green">{applicant.applicationDetails.totalIncome}</p>
+            </div>
+
+            <div className="space-y-4">
+              {applicant.applicationDetails.jobs.map((job, i) => (
+                <div key={i} className="p-4 rounded-xl bg-navy-50">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm font-bold text-navy">{job.employer}</p>
+                    {job.isCurrent && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-green text-white">Current</span>
+                    )}
+                    {!job.isCurrent && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-slate-300 text-white">Past</span>
+                    )}
+                  </div>
+                  <p className="text-sm text-slate-500">{job.jobTitle}</p>
+                  <p className="text-xs text-slate-400">{job.period}</p>
+                  <p className="text-sm font-medium text-green mt-2">{job.income}</p>
+                  <div className="mt-2 pt-2 border-t border-navy-100">
+                    <p className="text-xs text-slate-500">
+                      <span className="font-bold text-navy">Reference:</span> {job.referenceName} · {job.referencePhone}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <div className="mt-4 pt-4 border-t border-navy-100">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Notes</p>
-              <p className="text-slate-600 text-sm">{applicant.notes}</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Financial Institution</p>
+              <p className="text-navy text-sm">{applicant.applicationDetails.financialInstitution}</p>
+            </div>
+          </div>
+
+          {/* Emergency Contact & Vehicle */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
+              <h3 className="text-lg font-bold text-navy mb-4">Emergency Contact</h3>
+              <div className="p-4 rounded-xl bg-navy-50">
+                <p className="text-sm font-bold text-navy">{applicant.applicationDetails.emergencyContact.name}</p>
+                <p className="text-xs text-slate-500">Relationship: {applicant.applicationDetails.emergencyContact.relationship}</p>
+                <p className="text-xs text-slate-500">{applicant.applicationDetails.emergencyContact.phone}</p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
+              <h3 className="text-lg font-bold text-navy mb-4">Vehicle</h3>
+              <div className="p-4 rounded-xl bg-navy-50">
+                <p className="text-sm font-bold text-navy">{applicant.applicationDetails.vehicle.make}</p>
+                <p className="text-xs text-slate-500">{applicant.applicationDetails.vehicle.color} · {applicant.applicationDetails.vehicle.year}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Self-Reported Background */}
+          <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
+            <h3 className="text-lg font-bold text-navy mb-2">Self-Reported Background</h3>
+            <p className="text-sm text-slate-500 mb-4">
+              Make sure you verify their responses with TurboTenant&apos;s screening report.
+            </p>
+
+            <div className="space-y-3">
+              {applicant.applicationDetails.backgroundQuestions.map((q, i) => (
+                <div key={i} className="p-4 rounded-xl bg-navy-50">
+                  <p className="text-sm text-slate-600 mb-2">{q.question}</p>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-green text-white">
+                    {q.answer}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Other Information */}
+          <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
+            <h3 className="text-lg font-bold text-navy mb-4">Other Information and Comments</h3>
+            <p className="text-sm text-slate-500 mb-4">A few additional questions, including any custom questions you may have added.</p>
+
+            <div className="space-y-4">
+              <div className="p-3 rounded-xl bg-navy-50">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Do you have any special requests or requirements we should be aware of?</p>
+                <p className="text-navy text-sm">{applicant.applicationDetails.otherInfo.specialRequests}</p>
+              </div>
+              <div className="p-3 rounded-xl bg-navy-50">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">How did you hear about this property?</p>
+                <p className="text-navy text-sm">{applicant.applicationDetails.otherInfo.howDidYouHear}</p>
+              </div>
+              <div className="p-3 rounded-xl bg-navy-50">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Any other comments?</p>
+                <p className="text-navy text-sm">{applicant.applicationDetails.otherInfo.comments}</p>
+              </div>
             </div>
           </div>
         </div>
