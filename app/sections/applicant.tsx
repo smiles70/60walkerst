@@ -10,6 +10,9 @@ import {
   kingdomHalls,
   assemblyHalls,
   assemblyHallNote,
+  pricingInfo,
+  testimonials,
+  scheduleTour,
   type TownInfo,
   type WatchtowerFacility,
   type KingdomHall,
@@ -199,6 +202,107 @@ export default function ApplicantSection(): React.ReactElement {
               </div>
             </div>
           )}
+        </div>
+
+        {/* Pricing Section */}
+        <div className="mt-12 rounded-2xl border-2 border-navy-200 bg-white p-6 md:p-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-lg bg-green">
+              <Icon name="DollarSign" className="w-5 h-5 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-navy">Pricing &amp; What&apos;s Included</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="text-3xl font-bold text-green mb-1">{pricingInfo.monthlyRent}</p>
+              <p className="text-sm text-slate-500 mb-4">{pricingInfo.deposit}</p>
+              <h4 className="text-sm font-bold text-navy mb-2">Utilities Included:</h4>
+              <ul className="space-y-1">
+                {pricingInfo.utilitiesIncluded.map((item, i) => (
+                  <li key={i} className="text-sm text-slate-700 flex items-center gap-2">
+                    <Icon name="CheckCircle" className="w-4 h-4 text-green shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-navy mb-2">Additional Details:</h4>
+              <ul className="space-y-2">
+                {pricingInfo.additionalNotes.map((note, i) => (
+                  <li key={i} className="text-sm text-slate-600 flex items-start gap-2">
+                    <span className="text-green mt-0.5 shrink-0">•</span>
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials */}
+        <div className="mt-12">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-navy mb-2">What Previous Roommates Say</h3>
+            <p className="text-slate-600">Real experiences from people who called 60 Walker home</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {testimonials.map((t) => (
+              <div
+                key={t.id}
+                className="rounded-xl border-2 border-navy-200 bg-white p-5 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 hover:border-green"
+              >
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" className="w-4 h-4 text-amber" />
+                  ))}
+                </div>
+                <p className="text-sm text-slate-700 italic mb-4">&ldquo;{t.quote}&rdquo;</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-bold text-navy">{t.name}</p>
+                    <p className="text-xs text-slate-500">{t.role}</p>
+                  </div>
+                  <span className="text-xs font-medium text-green bg-green-50 px-2 py-1 rounded-full">
+                    {t.duration}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Schedule Tour */}
+        <div className="mt-12 rounded-2xl border-2 border-green bg-green-50 p-6 md:p-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-lg bg-green">
+              <Icon name="Calendar" className="w-5 h-5 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-navy">{scheduleTour.headline}</h3>
+          </div>
+          <p className="text-sm text-slate-700 mb-4">{scheduleTour.description}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+            <div className="flex items-center gap-2 text-sm text-slate-700">
+              <Icon name="Phone" className="w-4 h-4 text-green shrink-0" />
+              {scheduleTour.contactPhone}
+            </div>
+            <div className="flex items-center gap-2 text-sm text-slate-700">
+              <Icon name="MessageCircle" className="w-4 h-4 text-green shrink-0" />
+              {scheduleTour.contactEmail}
+            </div>
+            <div className="flex items-center gap-2 text-sm text-slate-700">
+              <Icon name="Calendar" className="w-4 h-4 text-green shrink-0" />
+              {scheduleTour.availability}
+            </div>
+          </div>
+          <button
+            className="w-full sm:w-auto py-3 px-6 rounded-xl bg-navy text-white font-bold
+                       hover:bg-navy-600 active:bg-navy-700 transition-colors
+                       focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
+            aria-label="Contact to schedule a tour"
+          >
+            Contact to Schedule a Tour
+          </button>
         </div>
       </div>
     </section>

@@ -46,4 +46,25 @@ describe("ApplicantSection", () => {
     fireEvent.click(screen.getByRole("tab", { name: /Kingdom Halls/i }));
     expect(screen.getByText(/No Assembly Halls/i)).toBeInTheDocument();
   });
+
+  it("renders pricing section", () => {
+    render(<ApplicantSection />);
+    expect(screen.getByRole("heading", { name: /Pricing & What\'s Included/i })).toBeInTheDocument();
+    expect(screen.getByText(/\$850 \/ month/i)).toBeInTheDocument();
+    expect(screen.getByText(/High-Speed WiFi/i)).toBeInTheDocument();
+  });
+
+  it("renders testimonials section", () => {
+    render(<ApplicantSection />);
+    expect(screen.getByRole("heading", { name: /What Previous Roommates Say/i })).toBeInTheDocument();
+    expect(screen.getByText(/Sarah M\./i)).toBeInTheDocument();
+    expect(screen.getByText(/David K\./i)).toBeInTheDocument();
+  });
+
+  it("renders schedule tour section", () => {
+    render(<ApplicantSection />);
+    expect(screen.getByRole("heading", { name: /Schedule a Tour/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Contact to Schedule a Tour/i })).toBeInTheDocument();
+    expect(screen.getByText(/Weekdays after 6 PM · Weekends by appointment/i)).toBeInTheDocument();
+  });
 });
