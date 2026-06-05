@@ -124,6 +124,15 @@ function PaymentCard() {
   );
 }
 
+export function UtilitiesContent() {
+  return (
+    <>
+      <CostTable />
+      <PaymentCard />
+    </>
+  );
+}
+
 export default function UtilitiesSection() {
   return (
     <section id="utilities" className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
@@ -140,8 +149,7 @@ export default function UtilitiesSection() {
           <p className="text-slate-600">{utilitiesSubtitle}</p>
         </div>
 
-        <CostTable />
-        <PaymentCard />
+        <UtilitiesContent />
       </div>
     </section>
   );

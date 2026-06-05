@@ -27,12 +27,13 @@ describe("Home Page", () => {
     expect(screen.getByRole("button", { name: /Back/i })).toBeInTheDocument();
   });
 
-  it("shows tenant sections when Tenant button is clicked", () => {
+  it("shows tenant portal cards when Tenant button is clicked", () => {
     render(<Home />);
     fireEvent.click(screen.getByRole("button", { name: /Tenant/i }));
-    expect(screen.getByRole("heading", { name: /Roommate Welcome Summary/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Roommate Utilities Monthly Share/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Contact Information & Actions/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /60 Walker St — Tenant Portal/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /View Welcome Home/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /View Monthly Share/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /View Contact & Actions/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Back/i })).toBeInTheDocument();
   });
 

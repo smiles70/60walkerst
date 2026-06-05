@@ -105,6 +105,27 @@ function ActionButton({ action }: { action: ActionItem }) {
   );
 }
 
+export function ContactContent() {
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        {providers.map((provider) => (
+          <ContactCard key={provider.id} provider={provider} />
+        ))}
+      </div>
+
+      <div className="rounded-xl border-2 border-navy-200 bg-white p-6">
+        <h3 className="text-lg font-bold text-navy mb-4 text-center">Quick Actions</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {actionItems.map((action) => (
+            <ActionButton key={action.id} action={action} />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function ContactSection() {
   return (
     <section id="contact" className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
@@ -121,22 +142,7 @@ export default function ContactSection() {
           <p className="text-slate-600">{contactsSubtitle}</p>
         </div>
 
-        {/* Provider Contact Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {providers.map((provider) => (
-            <ContactCard key={provider.id} provider={provider} />
-          ))}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="rounded-xl border-2 border-navy-200 bg-white p-6">
-          <h3 className="text-lg font-bold text-navy mb-4 text-center">Quick Actions</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {actionItems.map((action) => (
-              <ActionButton key={action.id} action={action} />
-            ))}
-          </div>
-        </div>
+        <ContactContent />
       </div>
     </section>
   );

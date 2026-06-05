@@ -39,6 +39,28 @@ function InfoCard({ category }: { category: RuleCategory }) {
   );
 }
 
+export function WelcomeContent() {
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        {houseRules.map((category) => (
+          <InfoCard key={category.id} category={category} />
+        ))}
+      </div>
+
+      <div className="rounded-xl border-2 border-amber bg-amber-50 p-4 flex items-start gap-3">
+        <div className="p-1.5 bg-amber rounded-lg shrink-0">
+          <Icon name={keyReminder.icon} className="w-5 h-5 text-white" />
+        </div>
+        <div>
+          <p className="text-amber-800 font-semibold text-sm">Key Reminder</p>
+          <p className="text-amber-700 text-sm mt-0.5">{keyReminder.text}</p>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function WelcomeSection() {
   return (
     <section id="welcome" className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
@@ -55,23 +77,7 @@ export default function WelcomeSection() {
           <p className="text-slate-600">{welcomeSubtitle}</p>
         </div>
 
-        {/* Rule Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          {houseRules.map((category) => (
-            <InfoCard key={category.id} category={category} />
-          ))}
-        </div>
-
-        {/* Key Reminder */}
-        <div className="rounded-xl border-2 border-amber bg-amber-50 p-4 flex items-start gap-3">
-          <div className="p-1.5 bg-amber rounded-lg shrink-0">
-            <Icon name={keyReminder.icon} className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <p className="text-amber-800 font-semibold text-sm">Key Reminder</p>
-            <p className="text-amber-700 text-sm mt-0.5">{keyReminder.text}</p>
-          </div>
-        </div>
+        <WelcomeContent />
       </div>
     </section>
   );

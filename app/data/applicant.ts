@@ -226,7 +226,7 @@ export interface ScheduleTour {
 }
 
 export const pricingInfo: PricingInfo = {
-  monthlyRent: "$850 / month",
+  monthlyRent: "Call for price",
   deposit: "One month's rent",
   utilitiesIncluded: ["High-Speed WiFi", "Electric", "Water", "Trash Removal"],
   additionalNotes: [

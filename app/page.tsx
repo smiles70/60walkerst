@@ -3,9 +3,7 @@
 import React, { useState } from "react";
 import HeroSection from "./sections/hero";
 import ApplicantSection from "./sections/applicant";
-import WelcomeSection from "./sections/welcome";
-import UtilitiesSection from "./sections/utilities";
-import ContactSection from "./sections/contact";
+import TenantSection from "./sections/tenant";
 import { Icon } from "@/components/ui/icon";
 
 type ViewMode = "hero" | "applicant" | "tenant";
@@ -63,9 +61,7 @@ export default function Home(): React.ReactElement {
               <BackButton onClick={() => setView("hero")} />
             </div>
           </div>
-          <WelcomeSection />
-          <UtilitiesSection />
-          <ContactSection />
+          <TenantSection />
         </>
       )}
     </main>
