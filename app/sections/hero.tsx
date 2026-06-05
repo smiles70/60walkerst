@@ -29,7 +29,7 @@ export default function HeroSection({
       {/* Centered cinematic lockup */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 max-w-4xl mx-auto">
         {/* Headline — dominates the frame */}
-        <h1 className="opacity-0 animate-hero-fade-up text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] tracking-tight drop-shadow-2xl">
+        <h1 className="opacity-0 animate-hero-fade-up text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-green leading-[1.05] tracking-tight drop-shadow-2xl">
           Your Next Chapter
           <br />
           Starts Here
