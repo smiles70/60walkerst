@@ -98,6 +98,24 @@ export const townInfos: TownInfo[] = [
     ],
     icon: "ShoppingBag",
   },
+  {
+    id: "transportation",
+    title: "Transportation",
+    description:
+      "Walden is well-connected to major travel corridors, with multiple transit options within easy reach.",
+    details: [
+      "Stewart International Airport (SWF) — ~20 miles",
+      "Newark Liberty (EWR) — ~70 miles",
+      "JFK & LaGuardia — ~75–90 miles",
+      "Short Line / Coach USA bus service",
+      "Trailways bus lines",
+      "Metro-North Port Jervis line — Middletown station",
+      "Amtrak — Poughkeepsie station (~30 miles)",
+      "Interstate 84 — ~8 miles",
+      "Interstate 87 / NY Thruway — ~15 miles",
+    ],
+    icon: "Bus",
+  },
 ];
 
 export const watchtowerFacilities: WatchtowerFacility[] = [
