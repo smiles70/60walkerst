@@ -13,6 +13,8 @@ import {
   pricingInfo,
   testimonials,
   galleryPhotos,
+  townGalleryPhotos,
+  waldenMapEmbed,
   scheduleTour,
   type TownInfo,
   type WatchtowerFacility,
@@ -209,6 +211,74 @@ function GalleryCard() {
   );
 }
 
+function TownGallery() {
+  const [activePhoto, setActivePhoto] = useState<{ src: string; alt: string; label: string } | null>(null);
+
+  return (
+    <div className="mt-8">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-navy">
+          <Icon name="Camera" className="w-5 h-5 text-white" />
+        </div>
+        <h3 className="text-xl font-bold text-navy">Photo Gallery</h3>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {townGalleryPhotos.map((photo) => (
+          <button
+            key={photo.id}
+            onClick={() => setActivePhoto(photo)}
+            className="group relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-navy-200
+                       focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2
+                       transition-all duration-200 hover:shadow-lg hover:border-green"
+            aria-label={`View ${photo.label}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-3">
+              <span className="text-white text-xs font-semibold">{photo.label}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+      <LightboxModal photo={activePhoto} onClose={() => setActivePhoto(null)} />
+    </div>
+  );
+}
+
+function WaldenMap() {
+  return (
+    <div className="mt-8">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-navy">
+          <Icon name="Globe" className="w-5 h-5 text-white" />
+        </div>
+        <h3 className="text-xl font-bold text-navy">Walden &amp; Surrounding Area</h3>
+      </div>
+      <div className="rounded-xl border-2 border-navy-200 overflow-hidden bg-white">
+        <iframe
+          src={waldenMapEmbed}
+          title="Walden, NY and surrounding areas"
+          width="100%"
+          height="400"
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
+          className="block"
+        />
+      </div>
+      <p className="mt-2 text-xs text-slate-500">
+        Map showing Walden, NY and nearby interstates including I-84 and I-87.
+      </p>
+    </div>
+  );
+}
+
 export default function ApplicantSection(): React.ReactElement {
   const [view, setView] = useState<ViewKey>("cards");
   const [activeTab, setActiveTab] = useState<TabKey>("town");
@@ -400,10 +470,14 @@ export default function ApplicantSection(): React.ReactElement {
 
             <div role="tabpanel" aria-label={tabs.find((t) => t.key === activeTab)?.label}>
               {activeTab === "town" && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {townInfos.map((info) => (
-                    <TownCard key={info.id} info={info} />
-                  ))}
+                <div>
+                  <WaldenMap />
+                  <TownGallery />
+                  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {townInfos.map((info) => (
+                      <TownCard key={info.id} info={info} />
+                    ))}
+                  </div>
                 </div>
               )}
 
