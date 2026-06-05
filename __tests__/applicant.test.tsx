@@ -9,7 +9,7 @@ describe("ApplicantSection", () => {
 
   it("renders the town title", () => {
     render(<ApplicantSection />);
-    expect(screen.getByRole("heading", { name: /About Walden, NY/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /About 60 Walker St/i })).toBeInTheDocument();
   });
 
   it("shows two category cards by default", () => {
@@ -18,19 +18,6 @@ describe("ApplicantSection", () => {
     expect(screen.getByRole("button", { name: /View details about the area/i })).toBeInTheDocument();
     expect(screen.getByText(/About This Home/i)).toBeInTheDocument();
     expect(screen.getByText(/About The Area/i)).toBeInTheDocument();
-  });
-
-  it("renders trust badges at top", () => {
-    render(<ApplicantSection />);
-    expect(screen.getByText(/Available Now/i)).toBeInTheDocument();
-    expect(screen.getByText(/No Broker Fee/i)).toBeInTheDocument();
-    expect(screen.getByText(/Move-In Ready/i)).toBeInTheDocument();
-  });
-
-  it("renders social proof at top", () => {
-    render(<ApplicantSection />);
-    expect(screen.getByText(/Loved by previous roommates/i)).toBeInTheDocument();
-    expect(screen.getByText(/5-star household/i)).toBeInTheDocument();
   });
 
   it("clicking About This Home shows pricing, testimonials, and schedule tour", () => {

@@ -23,7 +23,7 @@ describe("Home Page", () => {
   it("shows applicant section when Applicant button is clicked", () => {
     render(<Home />);
     fireEvent.click(screen.getByRole("button", { name: /Applicant/i }));
-    expect(screen.getByRole("heading", { name: /About Walden, NY/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /About 60 Walker St/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Back/i })).toBeInTheDocument();
   });
 
@@ -42,7 +42,7 @@ describe("Home Page", () => {
     fireEvent.click(screen.getByRole("button", { name: /Applicant/i }));
     fireEvent.click(screen.getByRole("button", { name: /Back/i }));
     expect(screen.getByRole("button", { name: /Applicant/i })).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: /About Walden, NY/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: /About 60 Walker St/i })).not.toBeInTheDocument();
   });
 
   it("returns to hero when Back button is clicked from tenant view", () => {

@@ -35,9 +35,9 @@ export interface AssemblyHall {
   note?: string;
 }
 
-export const townTitle = "About Walden, NY";
+export const townTitle = "About 60 Walker St";
 export const townSubtitle =
-  "A charming village in the heart of the Hudson Valley — quiet, scenic, and close to everything you need.";
+  "A welcoming shared home in the heart of the Hudson Valley";
 
 export const townInfos: TownInfo[] = [
   {
