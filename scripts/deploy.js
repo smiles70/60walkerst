@@ -65,7 +65,7 @@ async function deployWithRetry(deployFn, strategyName) {
 
 // Strategy 1: Netlify Anonymous Deploy (zero auth)
 async function deployNetlifyAnonymous() {
-  const command = `npx netlify deploy --allow-anonymous --dir="${DIST_DIR}" --prod --json --message="Automated deploy via script"`;
+  const command = `npx netlify deploy --allow-anonymous --create-site="60-walker-st" --dir="${DIST_DIR}" --prod --json --message="Automated deploy via script"`;
   const result = runCommand(command, { cwd: path.resolve(__dirname, "..") });
 
   if (result.success) {

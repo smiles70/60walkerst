@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest",
     "deploy": "node scripts/deploy.js",
-    "deploy:anonymous": "npx netlify deploy --allow-anonymous --dir=dist --prod --json"
+    "deploy:anonymous": "npx netlify deploy --allow-anonymous --create-site=\"60-walker-st\" --dir=dist --prod --json"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.0",
