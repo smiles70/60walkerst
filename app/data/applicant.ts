@@ -210,19 +210,13 @@ export interface PricingInfo {
 
 export interface Testimonial {
   id: string;
-  name: string;
-  role: string;
   quote: string;
-  duration: string;
 }
 
 export interface ScheduleTour {
   headline: string;
   description: string;
-  contactName: string;
-  contactPhone: string;
   contactEmail: string;
-  availability: string;
 }
 
 export const pricingInfo: PricingInfo = {
@@ -233,35 +227,26 @@ export const pricingInfo: PricingInfo = {
     "Heat is gas — split evenly among roommates in winter",
     "Private bedroom with shared kitchen, bathroom, and living spaces",
     "Furnished common areas — bring your own bedroom furniture",
-    "Month-to-month flexibility after 3-month initial commitment",
+    "1st month rent plus deposit once approved",
   ],
 };
 
 export const testimonials: Testimonial[] = [
   {
     id: "t1",
-    name: "Sarah M.",
-    role: "Former Roommate",
     quote:
       "Living at 60 Walker was the best decision I made. The house is warm, the roommates became family, and Walden is such a peaceful place to recharge after a long day.",
-    duration: "Lived here 2 years",
   },
   {
     id: "t2",
-    name: "David K.",
-    role: "Former Roommate",
     quote:
       "I was nervous about shared housing, but this place felt like home from day one. Great location, quiet neighborhood, and genuinely good people.",
-    duration: "Lived here 18 months",
   },
 ];
 
 export const scheduleTour: ScheduleTour = {
   headline: "Schedule a Tour",
   description:
-    "See the space in person and meet the current roommates. Tours are available weekdays after 6 PM and weekends by appointment.",
-  contactName: "Household Coordinator",
-  contactPhone: "(845) 555-0142",
-  contactEmail: "60walker@example.com",
-  availability: "Weekdays after 6 PM · Weekends by appointment",
+    "See the space in person and meet the current roommates. Tours are available by appointment only. Please email to schedule.",
+  contactEmail: "home@60walkerst.com",
 };

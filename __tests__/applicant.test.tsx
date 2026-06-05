@@ -26,7 +26,7 @@ describe("ApplicantSection", () => {
     expect(screen.getByRole("heading", { name: /Pricing & What\'s Included/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /What Previous Roommates Say/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /Schedule a Tour/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Contact to schedule a tour/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Contact to schedule a tour/i })).toBeInTheDocument();
   });
 
   it("clicking About This Home shows back button", () => {

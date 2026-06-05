@@ -237,16 +237,7 @@ export default function ApplicantSection(): React.ReactElement {
                         <Icon key={i} name="Star" className="w-4 h-4 text-amber" />
                       ))}
                     </div>
-                    <p className="text-sm text-slate-700 italic mb-4">&ldquo;{t.quote}&rdquo;</p>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-bold text-navy">{t.name}</p>
-                        <p className="text-xs text-slate-500">{t.role}</p>
-                      </div>
-                      <span className="text-xs font-medium text-green bg-green-50 px-2 py-1 rounded-full">
-                        {t.duration}
-                      </span>
-                    </div>
+                    <p className="text-sm text-slate-700 italic">&ldquo;{t.quote}&rdquo;</p>
                   </div>
                 ))}
               </div>
@@ -261,28 +252,16 @@ export default function ApplicantSection(): React.ReactElement {
                 <h3 className="text-xl font-bold text-navy">{scheduleTour.headline}</h3>
               </div>
               <p className="text-sm text-slate-700 mb-4">{scheduleTour.description}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-                <div className="flex items-center gap-2 text-sm text-slate-700">
-                  <Icon name="Phone" className="w-4 h-4 text-green shrink-0" />
-                  {scheduleTour.contactPhone}
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-700">
-                  <Icon name="MessageCircle" className="w-4 h-4 text-green shrink-0" />
-                  {scheduleTour.contactEmail}
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-700">
-                  <Icon name="Calendar" className="w-4 h-4 text-green shrink-0" />
-                  {scheduleTour.availability}
-                </div>
-              </div>
-              <button
-                className="w-full sm:w-auto py-3 px-6 rounded-xl bg-navy text-white font-bold
+              <a
+                href={`mailto:${scheduleTour.contactEmail}`}
+                className="inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-navy text-white font-bold
                            hover:bg-navy-600 active:bg-navy-700 transition-colors
                            focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
-                aria-label="Contact to schedule a tour"
+                aria-label="Contact to schedule a tour via email"
               >
+                <Icon name="MessageCircle" className="w-4 h-4" />
                 Contact to Schedule a Tour
-              </button>
+              </a>
             </div>
           </>
         )}
