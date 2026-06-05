@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "node scripts/deploy.js",
+    "deploy:anonymous": "npx netlify deploy --allow-anonymous --dir=dist --prod --json"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.0",
