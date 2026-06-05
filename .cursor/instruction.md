@@ -1,20 +1,19 @@
 # Instruction
 
-## Current Task (Epic Sprint 5: ESLint & Quality Gates)
-Configure ESLint with Next.js recommended rules + accessibility, fix all violations. Follow agent swarm governance.
+## Current Task (Epic Sprint 1: Data Layer — Hero & Applicant Portal)
+Create typed data files for applicant content. Follow agent swarm governance.
 
-> Create `.eslintrc.json` extending `next/core-web-vitals`, `next/typescript`, and `plugin:jsx-a11y/recommended`. Install `eslint-plugin-jsx-a11y` if needed. Run `npm run lint` and fix all violations. Ensure `npm test` and `npm run build` still pass. Do not change component behavior except to fix lint violations.
+> Create `app/data/applicant.ts` exporting typed interfaces (TownInfo, WatchtowerFacility, KingdomHall, AssemblyHall) and populated arrays. Include: Walden general info, nearby attractions, medical, shopping; Watchtower facilities (Warwick HQ, Patterson Educational Center, Wallkill Farms) with real addresses, phones, distances from Walden; Kingdom Halls within 40 miles; Assembly Halls within 40 miles (or empty array with note). Use string literal icon names matching the shared Icon component.
 
 ## Scope
-- **In Scope**: `.eslintrc.json`, `package.json` (if deps needed), lint fixes in source files
-- **Out of Scope**: Component behavior changes beyond lint fixes
+- **In Scope**: `app/data/applicant.ts`
+- **Out of Scope**: Components, page.tsx
 
 ## Dependencies
-- Requires: Sprint 4 completed & pushed (confirmed)
-- Blocks: Epic complete
+- Requires: Testing & Patterns epic complete (confirmed)
+- Blocks: Sprint 2 (Hero), Sprint 3 (Applicant Section)
 
 ## Expected Output
-- `npm run lint` passes with zero errors/warnings
-- `npm test` still passes
+- `app/data/applicant.ts` with complete typed data
 - `npm run build` still passes
 - Zero bugs after `/code check` and `/bug checker` iteration

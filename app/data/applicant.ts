@@ -1,0 +1,202 @@
+export interface TownInfo {
+  id: string;
+  title: string;
+  description: string;
+  details: string[];
+  icon: string;
+}
+
+export interface WatchtowerFacility {
+  id: string;
+  name: string;
+  type: string;
+  address: string;
+  phone: string;
+  distance: string;
+  driveTime: string;
+  description: string;
+}
+
+export interface KingdomHall {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  distance: string;
+  phone?: string;
+}
+
+export interface AssemblyHall {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  distance: string;
+  note?: string;
+}
+
+export const townTitle = "About Walden, NY";
+export const townSubtitle =
+  "A charming village in the heart of the Hudson Valley — quiet, scenic, and close to everything you need.";
+
+export const townInfos: TownInfo[] = [
+  {
+    id: "general",
+    title: "General Information",
+    description:
+      "Walden is the largest of three villages in the Town of Montgomery, Orange County, New York. Nestled along the Wallkill River, it offers a peaceful small-town atmosphere with easy access to major conveniences.",
+    details: [
+      "Population: ~6,978 (2010 census)",
+      "County: Orange County, NY",
+      "ZIP Code: 12586",
+      "Area code: 845",
+      "Part of the Town of Montgomery",
+      "Located along the Wallkill River",
+    ],
+    icon: "MapPin",
+  },
+  {
+    id: "nearby",
+    title: "What's Nearby",
+    description:
+      "Walden sits in the beautiful Hudson Valley, surrounded by natural beauty and within reach of major attractions.",
+    details: [
+      "Hudson Valley region — renowned for scenic beauty",
+      "Shawangunk Mountains & Shawangunk Ridge nearby",
+      "Minnewaska State Park Preserve — 22,275 acres",
+      "Mohonk Preserve — hiking and climbing",
+      "Stewart State Forest — outdoor recreation",
+      "Woodbury Common Premium Outlets — major shopping",
+    ],
+    icon: "Mountain",
+  },
+  {
+    id: "medical",
+    title: "Medical & Healthcare",
+    description:
+      "Quality healthcare is accessible within a short drive, with hospitals and clinics serving the Orange County area.",
+    details: [
+      "Orange Regional Medical Center — Middletown, NY",
+      "St. Luke's Cornwall Hospital — Cornwall, NY",
+      "Crystal Run Healthcare — multiple locations",
+      "Montefiore St. Luke's Cornwall — Newburgh",
+      "Urgent care centers in Newburgh & Middletown",
+    ],
+    icon: "HeartPulse",
+  },
+  {
+    id: "shopping",
+    title: "Shopping & Dining",
+    description:
+      "From local village shops to major retail centers, everything you need is close by.",
+    details: [
+      "Local shops & dining in Walden village center",
+      "Galleria at Crystal Run — Middletown mall",
+      "Woodbury Common Premium Outlets — designer shopping",
+      "Walmart, Target, Costco in Middletown/Newburgh",
+      "Local farmers markets seasonally",
+    ],
+    icon: "ShoppingBag",
+  },
+];
+
+export const watchtowerFacilities: WatchtowerFacility[] = [
+  {
+    id: "warwick",
+    name: "World Headquarters",
+    type: "Bethel — World HQ",
+    address: "1 Kings Dr, Tuxedo Park, NY 10987",
+    phone: "+1 (845) 524-3000",
+    distance: "~31 miles",
+    driveTime: "~35 min",
+    description:
+      "The global headquarters of Jehovah's Witnesses. Features museum exhibits and self-guided tours showcasing the organization's history and worldwide work.",
+  },
+  {
+    id: "patterson",
+    name: "Watchtower Educational Center",
+    type: "Bethel — Educational",
+    address: "100 Watchtower Dr, Patterson, NY 12563",
+    phone: "+1 (845) 306-1000",
+    distance: "~38 miles",
+    driveTime: "~50 min",
+    description:
+      "Educational center housing the Watchtower Bible School of Gilead and other training facilities. Includes a visitor center with exhibits.",
+  },
+  {
+    id: "wallkill",
+    name: "Watchtower Farms",
+    type: "Bethel — Branch Office",
+    address: "900 Red Mills Rd, Wallkill, NY 12589",
+    phone: "+1 (845) 744-6000",
+    distance: "~16 miles",
+    driveTime: "~24 min",
+    description:
+      "Branch office and agricultural facility supporting the worldwide work of Jehovah's Witnesses. Includes printing and shipping operations.",
+  },
+];
+
+export const kingdomHalls: KingdomHall[] = [
+  {
+    id: "walden",
+    name: "Walden Congregation",
+    address: "Walden, NY 12586",
+    city: "Walden",
+    distance: "Local",
+  },
+  {
+    id: "montgomery",
+    name: "Montgomery Congregation",
+    address: "Montgomery, NY",
+    city: "Montgomery",
+    distance: "~3 miles",
+  },
+  {
+    id: "wallkill-kh",
+    name: "Wallkill Congregation",
+    address: "Wallkill, NY",
+    city: "Wallkill",
+    distance: "~16 miles",
+  },
+  {
+    id: "cornwall",
+    name: "Cornwall / New Windsor Congregation",
+    address: "25 Beakes Rd, New Windsor, NY 12553",
+    city: "New Windsor",
+    distance: "~18 miles",
+  },
+  {
+    id: "middletown",
+    name: "Middletown Congregation",
+    address: "511 Mt Hope Rd, Middletown, NY 10940",
+    city: "Middletown",
+    distance: "~20 miles",
+    phone: "(845) 343-3422",
+  },
+  {
+    id: "newburgh",
+    name: "Newburgh Congregation",
+    address: "Newburgh, NY",
+    city: "Newburgh",
+    distance: "~22 miles",
+  },
+  {
+    id: "marlboro",
+    name: "Marlboro Congregation",
+    address: "Marlboro, NY",
+    city: "Marlboro",
+    distance: "~25 miles",
+  },
+  {
+    id: "milton",
+    name: "Milton Congregation",
+    address: "Milton, NY",
+    city: "Milton",
+    distance: "~30 miles",
+  },
+];
+
+export const assemblyHalls: AssemblyHall[] = [];
+
+export const assemblyHallNote =
+  "No Assembly Halls of Jehovah's Witnesses are located within a 40-mile radius of Walden, NY. The nearest Assembly Halls are in Jersey City, NJ (Stanley Theater) and on Long Island, both approximately 60+ miles away. Special events and larger gatherings are typically held at rented facilities or convention centers in the region.";
