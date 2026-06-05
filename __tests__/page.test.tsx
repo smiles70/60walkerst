@@ -9,7 +9,7 @@ describe("Home Page", () => {
 
   it("renders the hero with both buttons by default", () => {
     render(<Home />);
-    expect(screen.getByRole("heading", { name: /60 Walker St/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Your Next Chapter Starts Here/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Applicant/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Tenant/i })).toBeInTheDocument();
   });
