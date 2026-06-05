@@ -151,7 +151,7 @@ function WhatsIncludedTeaser() {
           { icon: "Bed", label: "Private Bedroom" },
           { icon: "Home", label: "Shared Kitchen" },
           { icon: "Wifi", label: "High-Speed WiFi" },
-          { icon: "Zap", label: "Utilities Included" },
+          { icon: "Sofa", label: "Furnished Commons" },
         ].map((item) => (
           <div
             key={item.label}
@@ -186,55 +186,57 @@ export default function ApplicantSection(): React.ReactElement {
           <p className="text-slate-600">{townSubtitle}</p>
         </div>
 
-        <TrustBadges />
-        <SocialProof />
-        <WhatsIncludedTeaser />
-
-        {/* VIEW: Two category cards */}
+        {/* VIEW: Two category cards (trust/social/teaser shown here only) */}
         {view === "cards" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            <button
-              onClick={() => setView("home")}
-              className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
-                         transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
-                         focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
-              aria-label="View details about this home"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 rounded-xl bg-navy group-hover:bg-green transition-colors">
-                  <Icon name="Home" className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-navy">About This Home</h3>
-              </div>
-              <p className="text-slate-600 mb-4">
-                Pricing, room details, what&apos;s included, testimonials from previous roommates, and how to schedule a tour.
-              </p>
-              <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
-                Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
-              </span>
-            </button>
+          <>
+            <TrustBadges />
+            <SocialProof />
+            <WhatsIncludedTeaser />
 
-            <button
-              onClick={() => setView("area")}
-              className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
-                         transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
-                         focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
-              aria-label="View details about the area"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 rounded-xl bg-navy group-hover:bg-green transition-colors">
-                  <Icon name="MapPin" className="w-8 h-8 text-white" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <button
+                onClick={() => setView("home")}
+                className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
+                           transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
+                           focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
+                aria-label="View details about this home"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-xl bg-navy group-hover:bg-green transition-colors">
+                    <Icon name="Home" className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-navy">About This Home</h3>
                 </div>
-                <h3 className="text-2xl font-bold text-navy">About The Area</h3>
-              </div>
-              <p className="text-slate-600 mb-4">
-                Walden town info, nearby attractions, Watchtower facilities, Kingdom Halls, and Assembly Halls within driving distance.
-              </p>
-              <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
-                Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
-              </span>
-            </button>
-          </div>
+                <p className="text-slate-600 mb-4">
+                  Pricing, room details, what&apos;s included, testimonials from previous roommates, and how to schedule a tour.
+                </p>
+                <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
+                  Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
+                </span>
+              </button>
+
+              <button
+                onClick={() => setView("area")}
+                className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
+                           transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
+                           focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
+                aria-label="View details about the area"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-xl bg-navy group-hover:bg-green transition-colors">
+                    <Icon name="MapPin" className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-navy">About The Area</h3>
+                </div>
+                <p className="text-slate-600 mb-4">
+                  Walden town info, nearby attractions, Watchtower facilities, Kingdom Halls, and Assembly Halls within driving distance.
+                </p>
+                <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
+                  Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
+                </span>
+              </button>
+            </div>
+          </>
         )}
 
         {/* VIEW: About This Home */}
