@@ -259,11 +259,9 @@ export const galleryPhotos: GalleryPhoto[] = [
 ];
 
 export const townGalleryPhotos: GalleryPhoto[] = [
-  { id: "entry", src: "/hero-door.jpg", alt: "Front entry of 60 Walker St", label: "Front Entry" },
-  { id: "exterior", src: "/walkerfront.jpeg", alt: "Exterior view of 60 Walker St", label: "Exterior View" },
-  { id: "kitchen", src: "/walkerkitchen.jpeg", alt: "Shared kitchen at 60 Walker St", label: "Kitchen" },
-  { id: "dining", src: "/walkerdining.jpeg", alt: "Dining area at 60 Walker St", label: "Dining Area" },
-  { id: "bath", src: "/walkerbath.jpeg", alt: "Bathroom at 60 Walker St", label: "Bathroom" },
+  { id: "skyline", src: "/Walden,_NY,_skyline_2.jpg", alt: "Walden, NY skyline", label: "Walden Skyline" },
+  { id: "villagehall", src: "/Walden_Village_Hall.jpg", alt: "Walden Village Hall", label: "Village Hall" },
+  { id: "fall", src: "/waldebfall.jpg", alt: "Walden in autumn", label: "Walden in Fall" },
 ];
 
 export const waldenMapEmbed =
