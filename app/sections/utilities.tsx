@@ -6,6 +6,7 @@ import {
   utilityRows,
   utilityTotals,
   paymentInstructions,
+  reminderNote,
   utilitiesTitle,
   utilitiesSubtitle,
   type UtilityRow,
@@ -120,6 +121,21 @@ function PaymentCard() {
           <p className="text-sm text-slate-700">{paymentInstructions.note}</p>
         </div>
       </div>
+      <p className="mt-3 text-xs text-slate-500 italic">{paymentInstructions.asterisk}</p>
+    </div>
+  );
+}
+
+function ReminderCard() {
+  return (
+    <div className="mt-6 rounded-xl border-2 border-amber bg-amber-50 p-5 flex items-start gap-3">
+      <div className="p-1.5 bg-amber rounded-lg shrink-0">
+        <Icon name={reminderNote.icon} className="w-5 h-5 text-white" />
+      </div>
+      <div>
+        <p className="text-amber-800 font-semibold text-sm">Important</p>
+        <p className="text-amber-700 text-sm mt-0.5">{reminderNote.text}</p>
+      </div>
     </div>
   );
 }
@@ -129,6 +145,7 @@ export function UtilitiesContent() {
     <>
       <CostTable />
       <PaymentCard />
+      <ReminderCard />
     </>
   );
 }
