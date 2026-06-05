@@ -7,6 +7,8 @@ import { UtilitiesContent } from "./utilities";
 import { ContactContent } from "./contact";
 import ManagementLogin from "./management-login";
 import ManagementDashboard from "./management-dashboard";
+import ApplicantsList from "./applicants-list";
+import ApplicantDetail from "./applicant-detail";
 import {
   welcomeTitle,
   welcomeSubtitle,
@@ -20,7 +22,7 @@ import {
   contactsSubtitle,
 } from "../data/contacts";
 
-type TenantView = "cards" | "welcome" | "utilities" | "contact" | "management-login" | "management-dashboard";
+type TenantView = "cards" | "welcome" | "utilities" | "contact" | "management-login" | "management-dashboard" | "applicants-list" | "applicant-detail";
 
 function BackToCards({ onClick }: { onClick: () => void }) {
   return (
@@ -39,6 +41,7 @@ function BackToCards({ onClick }: { onClick: () => void }) {
 
 export default function TenantSection(): React.ReactElement {
   const [view, setView] = useState<TenantView>("cards");
+  const [selectedApplicantId, setSelectedApplicantId] = useState<string | null>(null);
 
   const cards = [
     {
@@ -137,7 +140,39 @@ export default function TenantSection(): React.ReactElement {
             <div className="mb-6">
               <BackToCards onClick={() => setView("cards")} />
             </div>
-            <ManagementDashboard onLogout={() => setView("cards")} />
+            <ManagementDashboard
+              onLogout={() => setView("cards")}
+              onViewApplicants={() => setView("applicants-list")}
+            />
+          </>
+        )}
+
+        {/* VIEW: Applicants List */}
+        {view === "applicants-list" && (
+          <>
+            <div className="mb-6">
+              <BackToCards onClick={() => setView("management-dashboard")} />
+            </div>
+            <ApplicantsList
+              onSelect={(id) => {
+                setSelectedApplicantId(id);
+                setView("applicant-detail");
+              }}
+              onBack={() => setView("management-dashboard")}
+            />
+          </>
+        )}
+
+        {/* VIEW: Applicant Detail */}
+        {view === "applicant-detail" && selectedApplicantId && (
+          <>
+            <div className="mb-6">
+              <BackToCards onClick={() => setView("applicants-list")} />
+            </div>
+            <ApplicantDetail
+              applicantId={selectedApplicantId}
+              onBack={() => setView("applicants-list")}
+            />
           </>
         )}
 

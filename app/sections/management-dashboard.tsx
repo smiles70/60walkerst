@@ -3,13 +3,16 @@
 import React from "react";
 import { Icon } from "@/components/ui/icon";
 import { dashboardWidgets, managementDocuments } from "../data/management";
+import { applicants } from "../data/applicants";
 
 interface ManagementDashboardProps {
   onLogout: () => void;
+  onViewApplicants: () => void;
 }
 
 export default function ManagementDashboard({
   onLogout,
+  onViewApplicants,
 }: ManagementDashboardProps): React.ReactElement {
   return (
     <div>
@@ -47,6 +50,27 @@ export default function ManagementDashboard({
           </div>
         ))}
       </div>
+
+      {/* Applicants Widget */}
+      <button
+        onClick={onViewApplicants}
+        className="w-full group rounded-2xl border-2 border-navy-200 bg-white p-6 text-left mb-8
+                   transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
+                   focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
+      >
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-navy flex items-center justify-center shrink-0 group-hover:bg-green transition-colors">
+            <Icon name="Users" className="w-6 h-6 text-white" />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-lg font-bold text-navy">Applicants</h3>
+            <p className="text-sm text-slate-500">
+              {applicants.length} active applicant{applicants.length !== 1 ? "s" : ""}
+            </p>
+          </div>
+          <Icon name="ArrowLeft" className="w-5 h-5 text-slate-300 group-hover:text-navy rotate-180 transition-colors shrink-0" />
+        </div>
+      </button>
 
       {/* Documents */}
       <div className="rounded-2xl border-2 border-navy-200 bg-white p-6">
