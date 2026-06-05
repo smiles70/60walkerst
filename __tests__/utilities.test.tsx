@@ -15,14 +15,15 @@ describe("UtilitiesSection", () => {
   it("shows all utility rows in the table", () => {
     render(<UtilitiesSection />);
     expect(screen.getByText(/Propane/i)).toBeInTheDocument();
+    expect(screen.getByText(/Water \/ Sewer/i)).toBeInTheDocument();
     expect(screen.getByText(/Electric/i)).toBeInTheDocument();
     expect(screen.getByText(/Internet/i)).toBeInTheDocument();
   });
 
   it("shows correct total cost and per-person share", () => {
     render(<UtilitiesSection />);
-    expect(screen.getByText(/\$187\.00/)).toBeInTheDocument();
-    expect(screen.getByText(/\$93\.50/)).toBeInTheDocument();
+    expect(screen.getByText(/\$234\.50/)).toBeInTheDocument();
+    expect(screen.getByText(/\$78\.17/)).toBeInTheDocument();
   });
 
   it("renders payment instructions", () => {

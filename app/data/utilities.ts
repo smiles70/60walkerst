@@ -16,17 +16,26 @@ export const utilityRows: UtilityRow[] = [
     utility: "Propane",
     provider: "Blue Flame",
     totalCost: 68.0,
-    percentOfTotal: 36.4,
-    perPerson: 34.0,
+    percentOfTotal: 29.0,
+    perPerson: 22.67,
     icon: "Flame",
     color: "amber",
+  },
+  {
+    utility: "Water / Sewer",
+    provider: "Village of Walden",
+    totalCost: 47.5,
+    percentOfTotal: 20.2,
+    perPerson: 15.83,
+    icon: "Droplets",
+    color: "blue",
   },
   {
     utility: "Electric",
     provider: "NYSEG",
     totalCost: 48.0,
-    percentOfTotal: 25.7,
-    perPerson: 24.0,
+    percentOfTotal: 20.4,
+    perPerson: 16.0,
     icon: "Zap",
     color: "yellow",
   },
@@ -34,17 +43,17 @@ export const utilityRows: UtilityRow[] = [
     utility: "Internet",
     provider: "Spectrum",
     totalCost: 71.0,
-    percentOfTotal: 37.9,
-    perPerson: 35.5,
+    percentOfTotal: 30.3,
+    perPerson: 23.67,
     icon: "Wifi",
-    color: "blue",
+    color: "purple",
   },
 ];
 
 export const utilityTotals = {
-  totalCost: 187.0,
+  totalCost: 234.5,
   percentOfTotal: 100,
-  perPerson: 93.5,
+  perPerson: 78.17,
 };
 
 export const paymentInstructions = {

@@ -217,7 +217,7 @@ export const kingdomHalls: KingdomHall[] = [
 export const assemblyHalls: AssemblyHall[] = [];
 
 export const assemblyHallNote =
-  "No Assembly Halls of Jehovah's Witnesses are located within a 40-mile radius of Walden, NY. The nearest Assembly Halls are in Jersey City, NJ (Stanley Theater) and on Long Island, both approximately 60+ miles away. Special events and larger gatherings are typically held at rented facilities or convention centers in the region.";
+  "No Assembly Halls of Jehovah's Witnesses are located within a 70-mile radius of Walden, NY. The nearest Assembly Halls are in Jersey City, NJ (Stanley Theater) and on Long Island, both approximately 60–75 miles away. Special events and larger gatherings are typically held at rented facilities or convention centers in the region.";
 
 export interface PricingInfo {
   monthlyRent: string;
@@ -239,13 +239,14 @@ export interface ScheduleTour {
 
 export const pricingInfo: PricingInfo = {
   monthlyRent: "Call for price",
-  deposit: "One month's rent",
+  deposit: "",
   utilitiesIncluded: ["High-Speed WiFi", "Electric", "Water", "Trash Removal"],
   additionalNotes: [
     "Heat is gas — split evenly among roommates",
     "Private bedroom with shared kitchen, bathroom, and living spaces",
     "Furnished common areas — bring your own bedroom furniture",
     "1st month rent plus deposit once approved",
+    "Renters insurance policy required",
   ],
 };
 
@@ -274,6 +275,12 @@ export const galleryPhotos: GalleryPhoto[] = [
   { id: "kitchen", src: "/walkerkitchen.jpeg", alt: "Shared kitchen at 60 Walker St", label: "Kitchen" },
   { id: "dining", src: "/walkerdining.jpeg", alt: "Dining area at 60 Walker St", label: "Dining Area" },
   { id: "bath", src: "/walkerbath.jpeg", alt: "Bathroom at 60 Walker St", label: "Bathroom" },
+];
+
+export const watchtowerGalleryPhotos: GalleryPhoto[] = [
+  { id: "warwick", src: "/warwickbethel.webp", alt: "World Headquarters in Warwick, NY", label: "Warwick World HQ" },
+  { id: "paterson", src: "/patersonbethel.jpg", alt: "Watchtower Educational Center in Patterson, NY", label: "Patterson Educational Center" },
+  { id: "wallkill", src: "/wallkillbethel.jpg", alt: "Watchtower Farms in Wallkill, NY", label: "Wallkill Farms" },
 ];
 
 export const townGalleryPhotos: GalleryPhoto[] = [

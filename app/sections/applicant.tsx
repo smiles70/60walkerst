@@ -14,6 +14,7 @@ import {
   testimonials,
   galleryPhotos,
   townGalleryPhotos,
+  watchtowerGalleryPhotos,
   waldenMapEmbed,
   scheduleTour,
   type TownInfo,
@@ -250,6 +251,45 @@ function TownGallery() {
   );
 }
 
+function WatchtowerGallery() {
+  const [activePhoto, setActivePhoto] = useState<{ src: string; alt: string; label: string } | null>(null);
+
+  return (
+    <div className="mt-8">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-navy">
+          <Icon name="Camera" className="w-5 h-5 text-white" />
+        </div>
+        <h3 className="text-xl font-bold text-navy">Photo Gallery</h3>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {watchtowerGalleryPhotos.map((photo) => (
+          <button
+            key={photo.id}
+            onClick={() => setActivePhoto(photo)}
+            className="group relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-navy-200
+                       focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2
+                       transition-all duration-200 hover:shadow-lg hover:border-green"
+            aria-label={`View ${photo.label}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-3">
+              <span className="text-white text-xs font-semibold">{photo.label}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+      <LightboxModal photo={activePhoto} onClose={() => setActivePhoto(null)} />
+    </div>
+  );
+}
+
 function WaldenMap() {
   return (
     <div className="mt-8">
@@ -364,7 +404,9 @@ export default function ApplicantSection(): React.ReactElement {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <p className="text-3xl font-bold text-green mb-1">{pricingInfo.monthlyRent}</p>
-                  <p className="text-sm text-slate-500 mb-4">{pricingInfo.deposit}</p>
+                  {pricingInfo.deposit && (
+                    <p className="text-sm text-slate-500 mb-4">{pricingInfo.deposit}</p>
+                  )}
                   <h4 className="text-sm font-bold text-navy mb-2">Utilities Included:</h4>
                   <ul className="space-y-1">
                     {pricingInfo.utilitiesIncluded.map((item, i) => (
@@ -482,10 +524,13 @@ export default function ApplicantSection(): React.ReactElement {
               )}
 
               {activeTab === "watchtower" && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {watchtowerFacilities.map((facility) => (
-                    <FacilityCard key={facility.id} facility={facility} />
-                  ))}
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {watchtowerFacilities.map((facility) => (
+                      <FacilityCard key={facility.id} facility={facility} />
+                    ))}
+                  </div>
+                  <WatchtowerGallery />
                 </div>
               )}
 
@@ -494,7 +539,7 @@ export default function ApplicantSection(): React.ReactElement {
                   <div>
                     <h3 className="text-xl font-bold text-navy mb-3 flex items-center gap-2">
                       <Icon name="Building" className="w-5 h-5" />
-                      Kingdom Halls within 40 miles
+                      Kingdom Halls within 70 miles
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       {kingdomHalls.map((hall) => (
