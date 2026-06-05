@@ -5,6 +5,8 @@ import { Icon } from "@/components/ui/icon";
 import { WelcomeContent } from "./welcome";
 import { UtilitiesContent } from "./utilities";
 import { ContactContent } from "./contact";
+import ManagementLogin from "./management-login";
+import ManagementDashboard from "./management-dashboard";
 import {
   welcomeTitle,
   welcomeSubtitle,
@@ -18,7 +20,7 @@ import {
   contactsSubtitle,
 } from "../data/contacts";
 
-type TenantView = "cards" | "welcome" | "utilities" | "contact";
+type TenantView = "cards" | "welcome" | "utilities" | "contact" | "management-login" | "management-dashboard";
 
 function BackToCards({ onClick }: { onClick: () => void }) {
   return (
@@ -79,29 +81,64 @@ export default function TenantSection(): React.ReactElement {
 
         {/* VIEW: Three category cards */}
         {view === "cards" && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {cards.map((card) => (
-              <button
-                key={card.key}
-                onClick={() => setView(card.key)}
-                className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
-                           transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
-                           focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
-                aria-label={`View ${card.title}`}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className={`p-3 rounded-xl ${card.bg} group-hover:bg-green transition-colors`}>
-                    <Icon name={card.icon} className="w-8 h-8 text-white" />
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {cards.map((card) => (
+                <button
+                  key={card.key}
+                  onClick={() => setView(card.key)}
+                  className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
+                             transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
+                             focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
+                  aria-label={`View ${card.title}`}
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`p-3 rounded-xl ${card.bg} group-hover:bg-green transition-colors`}>
+                      <Icon name={card.icon} className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-navy">{card.title}</h3>
                   </div>
-                  <h3 className="text-2xl font-bold text-navy">{card.title}</h3>
-                </div>
-                <p className="text-slate-600 mb-4">{card.detail}</p>
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
-                  Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
-                </span>
+                  <p className="text-slate-600 mb-4">{card.detail}</p>
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
+                    Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setView("management-login")}
+                className="inline-flex items-center gap-2 text-sm font-medium text-navy-400 hover:text-navy transition-colors"
+              >
+                <Icon name="Lock" className="w-4 h-4" />
+                Management Login
               </button>
-            ))}
-          </div>
+            </div>
+          </>
+        )}
+
+        {/* VIEW: Management Login */}
+        {view === "management-login" && (
+          <>
+            <div className="mb-6">
+              <BackToCards onClick={() => setView("cards")} />
+            </div>
+            <ManagementLogin
+              onSuccess={() => setView("management-dashboard")}
+              onCancel={() => setView("cards")}
+            />
+          </>
+        )}
+
+        {/* VIEW: Management Dashboard */}
+        {view === "management-dashboard" && (
+          <>
+            <div className="mb-6">
+              <BackToCards onClick={() => setView("cards")} />
+            </div>
+            <ManagementDashboard onLogout={() => setView("cards")} />
+          </>
         )}
 
         {/* VIEW: Welcome Home */}
