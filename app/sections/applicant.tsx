@@ -12,6 +12,7 @@ import {
   assemblyHallNote,
   pricingInfo,
   testimonials,
+  galleryPhotos,
   scheduleTour,
   type TownInfo,
   type WatchtowerFacility,
@@ -107,6 +108,104 @@ function BackToCards({ onClick }: { onClick: () => void }) {
       <Icon name="ArrowLeft" className="w-4 h-4" />
       Back
     </button>
+  );
+}
+
+function LightboxModal({
+  photo,
+  onClose,
+}: {
+  photo: { src: string; alt: string; label: string } | null;
+  onClose: () => void;
+}) {
+  const overlayRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    if (photo) {
+      document.addEventListener("keydown", handleKey);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [photo, onClose]);
+
+  if (!photo) return null;
+
+  return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+    <div
+      ref={overlayRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label={photo.label}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+      onClick={(e) => {
+        if (e.target === overlayRef.current) onClose();
+      }}
+    >
+      <div className="relative max-w-4xl w-full">
+        <button
+          onClick={onClose}
+          className="absolute -top-10 right-0 p-2 text-white hover:text-green transition-colors focus-visible:ring-2 focus-visible:ring-green rounded-lg"
+          aria-label="Close lightbox"
+        >
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
+        />
+        <p className="mt-3 text-center text-white text-sm font-medium">{photo.label}</p>
+      </div>
+    </div>
+  );
+}
+
+function GalleryCard() {
+  const [activePhoto, setActivePhoto] = useState<{ src: string; alt: string; label: string } | null>(null);
+
+  return (
+    <div className="mt-12">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 rounded-lg bg-navy">
+          <Icon name="Camera" className="w-5 h-5 text-white" />
+        </div>
+        <h3 className="text-xl font-bold text-navy">Photo &amp; Video Gallery</h3>
+      </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {galleryPhotos.map((photo) => (
+          <button
+            key={photo.id}
+            onClick={() => setActivePhoto(photo)}
+            className="group relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-navy-200
+                       focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2
+                       transition-all duration-200 hover:shadow-lg hover:border-green"
+            aria-label={`View ${photo.label}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-3">
+              <span className="text-white text-xs font-semibold">{photo.label}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+      <LightboxModal photo={activePhoto} onClose={() => setActivePhoto(null)} />
+    </div>
   );
 }
 
@@ -219,6 +318,9 @@ export default function ApplicantSection(): React.ReactElement {
                 </div>
               </div>
             </div>
+
+            {/* Photo Gallery */}
+            <GalleryCard />
 
             {/* Testimonials */}
             <div className="mt-12">

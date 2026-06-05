@@ -224,7 +224,7 @@ export const pricingInfo: PricingInfo = {
   deposit: "One month's rent",
   utilitiesIncluded: ["High-Speed WiFi", "Electric", "Water", "Trash Removal"],
   additionalNotes: [
-    "Heat is gas — split evenly among roommates in winter",
+    "Heat is gas — split evenly among roommates",
     "Private bedroom with shared kitchen, bathroom, and living spaces",
     "Furnished common areas — bring your own bedroom furniture",
     "1st month rent plus deposit once approved",
@@ -242,6 +242,20 @@ export const testimonials: Testimonial[] = [
     quote:
       "I was nervous about shared housing, but this place felt like home from day one. Great location, quiet neighborhood, and genuinely good people.",
   },
+];
+
+export interface GalleryPhoto {
+  id: string;
+  src: string;
+  alt: string;
+  label: string;
+}
+
+export const galleryPhotos: GalleryPhoto[] = [
+  { id: "front", src: "/walkerfront.jpeg", alt: "Front exterior of 60 Walker St", label: "Front Exterior" },
+  { id: "kitchen", src: "/walkerkitchen.jpeg", alt: "Shared kitchen at 60 Walker St", label: "Kitchen" },
+  { id: "dining", src: "/walkerdining.jpeg", alt: "Dining area at 60 Walker St", label: "Dining Area" },
+  { id: "bath", src: "/walkerbath.jpeg", alt: "Bathroom at 60 Walker St", label: "Bathroom" },
 ];
 
 export const scheduleTour: ScheduleTour = {
