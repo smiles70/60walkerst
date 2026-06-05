@@ -113,6 +113,53 @@ export default function ApplicantSection(): React.ReactElement {
           <p className="text-slate-600">{townSubtitle}</p>
         </div>
 
+        {/* Trust badges — revealed on applicant click */}
+        <div className="flex flex-wrap justify-center gap-3 mb-4">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 text-green-700 text-sm font-medium">
+            <Icon name="CheckCircle" className="w-4 h-4" />
+            Available Now
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-navy-50 text-navy-700 text-sm font-medium">
+            <Icon name="CheckCircle" className="w-4 h-4" />
+            No Broker Fee
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 text-sm font-medium">
+            <Icon name="CheckCircle" className="w-4 h-4" />
+            Move-In Ready
+          </span>
+        </div>
+
+        {/* Social proof */}
+        <div className="flex items-center justify-center gap-2 mb-6 text-sm text-slate-500">
+          <Icon name="Star" className="w-4 h-4 text-amber-400" />
+          <span>Loved by previous roommates</span>
+          <span className="text-slate-300">·</span>
+          <span className="font-medium text-navy">5-star household</span>
+        </div>
+
+        {/* What&apos;s Included teaser */}
+        <div className="max-w-3xl mx-auto mb-8">
+          <p className="text-xs font-bold text-navy-400 uppercase tracking-wider mb-4 text-center">
+            What&apos;s Included
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { icon: "Bed", label: "Private Bedroom" },
+              { icon: "Home", label: "Shared Kitchen" },
+              { icon: "Wifi", label: "High-Speed WiFi" },
+              { icon: "Zap", label: "Utilities Included" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-navy-50/50 border border-navy-100"
+              >
+                <Icon name={item.icon} className="w-5 h-5 text-navy-400" />
+                <span className="text-xs font-medium text-navy-600">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-8" role="tablist" aria-label="Applicant information categories">
           {tabs.map((tab) => {

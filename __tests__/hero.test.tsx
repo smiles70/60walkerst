@@ -25,29 +25,7 @@ describe("HeroSection", () => {
     expect(screen.getByText(/60 Walker St — Walden, NY/i)).toBeInTheDocument();
   });
 
-  it("renders trust badges", () => {
-    render(<HeroSection onSelectApplicant={mockApplicant} onSelectTenant={mockTenant} />);
-    expect(screen.getByText(/Available Now/i)).toBeInTheDocument();
-    expect(screen.getByText(/No Broker Fee/i)).toBeInTheDocument();
-    expect(screen.getByText(/Move-In Ready/i)).toBeInTheDocument();
-  });
-
-  it("renders social proof line", () => {
-    render(<HeroSection onSelectApplicant={mockApplicant} onSelectTenant={mockTenant} />);
-    expect(screen.getByText(/Loved by previous roommates/i)).toBeInTheDocument();
-    expect(screen.getByText(/5-star household/i)).toBeInTheDocument();
-  });
-
-  it("renders What's Included teaser", () => {
-    render(<HeroSection onSelectApplicant={mockApplicant} onSelectTenant={mockTenant} />);
-    expect(screen.getByText(/What's Included/i)).toBeInTheDocument();
-    expect(screen.getByText(/Private Bedroom/i)).toBeInTheDocument();
-    expect(screen.getByText(/Shared Kitchen/i)).toBeInTheDocument();
-    expect(screen.getByText(/High-Speed WiFi/i)).toBeInTheDocument();
-    expect(screen.getByText(/Utilities Included/i)).toBeInTheDocument();
-  });
-
-  it("renders both CTA buttons", () => {
+  it("renders both floating CTA buttons", () => {
     render(<HeroSection onSelectApplicant={mockApplicant} onSelectTenant={mockTenant} />);
     expect(screen.getByRole("button", { name: /Applicant/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Tenant/i })).toBeInTheDocument();

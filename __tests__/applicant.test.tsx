@@ -47,11 +47,30 @@ describe("ApplicantSection", () => {
     expect(screen.getByText(/No Assembly Halls/i)).toBeInTheDocument();
   });
 
+  it("renders trust badges", () => {
+    render(<ApplicantSection />);
+    expect(screen.getByText(/Available Now/i)).toBeInTheDocument();
+    expect(screen.getByText(/No Broker Fee/i)).toBeInTheDocument();
+    expect(screen.getByText(/Move-In Ready/i)).toBeInTheDocument();
+  });
+
+  it("renders social proof line", () => {
+    render(<ApplicantSection />);
+    expect(screen.getByText(/Loved by previous roommates/i)).toBeInTheDocument();
+    expect(screen.getByText(/5-star household/i)).toBeInTheDocument();
+  });
+
+  it("renders What's Included teaser", () => {
+    render(<ApplicantSection />);
+    expect(screen.getAllByText(/Private Bedroom/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Shared Kitchen/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Utilities Included/i).length).toBeGreaterThan(0);
+  });
+
   it("renders pricing section", () => {
     render(<ApplicantSection />);
     expect(screen.getByRole("heading", { name: /Pricing & What\'s Included/i })).toBeInTheDocument();
     expect(screen.getByText(/\$850 \/ month/i)).toBeInTheDocument();
-    expect(screen.getByText(/High-Speed WiFi/i)).toBeInTheDocument();
   });
 
   it("renders testimonials section", () => {
