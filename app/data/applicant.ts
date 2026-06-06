@@ -214,10 +214,23 @@ export const kingdomHalls: KingdomHall[] = [
   },
 ];
 
-export const assemblyHalls: AssemblyHall[] = [];
-
-export const assemblyHallNote =
-  "No Assembly Halls of Jehovah's Witnesses are located within a 100-mile radius of Walden, NY. The nearest Assembly Halls are in Jersey City, NJ (Stanley Theater) and on Long Island, both approximately 60–75 miles away. Special events and larger gatherings are typically held at rented facilities or convention centers in the region.";
+export const assemblyHalls: AssemblyHall[] = [
+  {
+    id: "jersey-city",
+    name: "Jersey City Assembly Hall",
+    address: "Stanley Theater, Jersey City, NJ",
+    city: "Jersey City",
+    distance: "~70 miles",
+    note: "Former Stanley Theater — beautifully restored historic venue",
+  },
+  {
+    id: "long-island",
+    name: "Long Island Assembly Hall",
+    address: "Long Island, NY",
+    city: "Long Island",
+    distance: "~80 miles",
+  },
+];
 
 export interface PricingInfo {
   monthlyRent: string;

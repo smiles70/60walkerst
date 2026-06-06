@@ -77,11 +77,14 @@ describe("ApplicantSection", () => {
     expect(screen.getByText(/Kingdom Halls within 100 miles/i)).toBeInTheDocument();
   });
 
-  it("shows Assembly Halls note when no halls within 100 miles", () => {
+  it("shows Assembly Halls within 100 miles", () => {
     render(<ApplicantSection />);
     fireEvent.click(screen.getByRole("button", { name: /View details about the area/i }));
     fireEvent.click(screen.getByRole("tab", { name: /Kingdom Halls/i }));
-    expect(screen.getByText(/No Assembly Halls/i)).toBeInTheDocument();
+    expect(screen.getByText(/Jersey City Assembly Hall/i)).toBeInTheDocument();
+    expect(screen.getByText(/Long Island Assembly Hall/i)).toBeInTheDocument();
+    expect(screen.getByText(/~70 miles/i)).toBeInTheDocument();
+    expect(screen.getByText(/~80 miles/i)).toBeInTheDocument();
   });
 
 });

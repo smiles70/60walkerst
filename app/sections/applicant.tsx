@@ -9,7 +9,6 @@ import {
   watchtowerFacilities,
   kingdomHalls,
   assemblyHalls,
-  assemblyHallNote,
   pricingInfo,
   testimonials,
   galleryPhotos,
@@ -548,36 +547,35 @@ export default function ApplicantSection(): React.ReactElement {
                     </div>
                   </div>
 
-                  <div className="rounded-xl border-2 border-navy-200 bg-navy-50 p-5">
-                    <h3 className="text-lg font-bold text-navy mb-2 flex items-center gap-2">
+                  <div>
+                    <h3 className="text-xl font-bold text-navy mb-3 flex items-center gap-2">
                       <Icon name="Users" className="w-5 h-5" />
-                      Assembly Halls
+                      Assembly Halls within 100 miles
                     </h3>
-                    {assemblyHalls.length === 0 ? (
-                      <p className="text-sm text-slate-600">{assemblyHallNote}</p>
-                    ) : (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {assemblyHalls.map((hall) => (
-                          <div
-                            key={hall.id}
-                            className="flex items-center gap-3 rounded-lg border-2 border-navy-200 bg-white px-4 py-3"
-                          >
-                            <div className="p-1.5 rounded-md bg-amber-50 shrink-0">
-                              <Icon name="Users" className="w-4 h-4 text-amber" />
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <h4 className="text-sm font-bold text-navy truncate">
-                                {hall.name}
-                              </h4>
-                              <p className="text-xs text-slate-500">{hall.address}</p>
-                            </div>
-                            <span className="text-xs font-medium text-amber whitespace-nowrap shrink-0">
-                              {hall.distance}
-                            </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {assemblyHalls.map((hall) => (
+                        <div
+                          key={hall.id}
+                          className="flex items-center gap-3 rounded-lg border-2 border-navy-200 bg-white px-4 py-3"
+                        >
+                          <div className="p-1.5 rounded-md bg-amber-50 shrink-0">
+                            <Icon name="Users" className="w-4 h-4 text-amber" />
                           </div>
-                        ))}
-                      </div>
-                    )}
+                          <div className="min-w-0 flex-1">
+                            <h4 className="text-sm font-bold text-navy truncate">
+                              {hall.name}
+                            </h4>
+                            <p className="text-xs text-slate-500">{hall.address}</p>
+                            {hall.note && (
+                              <p className="text-xs text-slate-400 mt-0.5">{hall.note}</p>
+                            )}
+                          </div>
+                          <span className="text-xs font-medium text-amber whitespace-nowrap shrink-0">
+                            {hall.distance}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
