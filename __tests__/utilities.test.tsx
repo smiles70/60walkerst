@@ -29,6 +29,7 @@ describe("UtilitiesSection", () => {
   it("renders payment instructions", () => {
     render(<UtilitiesSection />);
     expect(screen.getByText(/Payment Instructions/i)).toBeInTheDocument();
+    expect(screen.getByText(/Cashapp/i)).toBeInTheDocument();
     expect(screen.getByText(/By the 15th of each month/i)).toBeInTheDocument();
   });
 });

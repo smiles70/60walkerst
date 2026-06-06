@@ -101,7 +101,7 @@ function PaymentCard() {
         </div>
         <h3 className="text-lg font-bold text-green">Payment Instructions</h3>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Pay By</p>
           <p className="text-sm text-slate-700">{paymentInstructions.payByDate}</p>
@@ -115,10 +115,6 @@ function PaymentCard() {
               </span>
             ))}
           </div>
-        </div>
-        <div>
-          <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Note</p>
-          <p className="text-sm text-slate-700">{paymentInstructions.note}</p>
         </div>
       </div>
       <p className="mt-3 text-xs text-slate-500 italic">{paymentInstructions.asterisk}</p>

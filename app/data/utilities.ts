@@ -58,12 +58,11 @@ export const utilityTotals = {
 
 export const paymentInstructions = {
   payByDate: "By the 15th of each month",
-  methods: ["Venmo", "Zelle"],
-  note: "Send to service provider directly",
+  methods: ["Cashapp", "Zelle"],
   asterisk: "*based on 12 months average and 3 roommates sharing, subject to change",
 };
 
 export const reminderNote = {
   icon: "FileText" as const,
-  text: "A full roommate agreement will be provided upon approval",
+  text: "The roommate agreement is available upon approval",
 };

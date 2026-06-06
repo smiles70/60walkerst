@@ -217,7 +217,7 @@ export const kingdomHalls: KingdomHall[] = [
 export const assemblyHalls: AssemblyHall[] = [];
 
 export const assemblyHallNote =
-  "No Assembly Halls of Jehovah's Witnesses are located within a 70-mile radius of Walden, NY. The nearest Assembly Halls are in Jersey City, NJ (Stanley Theater) and on Long Island, both approximately 60–75 miles away. Special events and larger gatherings are typically held at rented facilities or convention centers in the region.";
+  "No Assembly Halls of Jehovah's Witnesses are located within a 100-mile radius of Walden, NY. The nearest Assembly Halls are in Jersey City, NJ (Stanley Theater) and on Long Island, both approximately 60–75 miles away. Special events and larger gatherings are typically held at rented facilities or convention centers in the region.";
 
 export interface PricingInfo {
   monthlyRent: string;
@@ -287,6 +287,7 @@ export const townGalleryPhotos: GalleryPhoto[] = [
   { id: "skyline", src: "/Walden,_NY,_skyline_2.jpg", alt: "Walden, NY skyline", label: "Walden Skyline" },
   { id: "villagehall", src: "/Walden_Village_Hall.jpg", alt: "Walden Village Hall", label: "Village Hall" },
   { id: "fall", src: "/waldebfall.jpg", alt: "Walden in autumn", label: "Walden in Fall" },
+  { id: "sign", src: "/waldensign.jpg", alt: "Walden village welcome sign", label: "Walden Village Sign" },
 ];
 
 export const waldenMapEmbed =

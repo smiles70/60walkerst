@@ -74,10 +74,10 @@ describe("ApplicantSection", () => {
     fireEvent.click(screen.getByRole("button", { name: /View details about the area/i }));
     fireEvent.click(screen.getByRole("tab", { name: /Kingdom Halls/i }));
     expect(screen.getByRole("tab", { name: /Kingdom Halls/i })).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByText(/Kingdom Halls within 70 miles/i)).toBeInTheDocument();
+    expect(screen.getByText(/Kingdom Halls within 100 miles/i)).toBeInTheDocument();
   });
 
-  it("shows Assembly Halls note when no halls within 70 miles", () => {
+  it("shows Assembly Halls note when no halls within 100 miles", () => {
     render(<ApplicantSection />);
     fireEvent.click(screen.getByRole("button", { name: /View details about the area/i }));
     fireEvent.click(screen.getByRole("tab", { name: /Kingdom Halls/i }));

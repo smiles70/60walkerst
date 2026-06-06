@@ -341,46 +341,46 @@ export default function ApplicantSection(): React.ReactElement {
 
         {/* VIEW: Two category cards */}
         {view === "cards" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <button
                 onClick={() => setView("home")}
-                className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
+                className="group rounded-2xl border-2 border-navy-200 bg-white p-10 text-left
                            transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
                            focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
                 aria-label="View details about this home"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 rounded-xl bg-navy group-hover:bg-green transition-colors">
-                    <Icon name="Home" className="w-8 h-8 text-white" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-4 rounded-xl bg-navy group-hover:bg-green transition-colors">
+                    <Icon name="Home" className="w-12 h-12 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-navy">About This Home</h3>
+                  <h3 className="text-3xl font-bold text-navy">About This Home</h3>
                 </div>
-                <p className="text-slate-600 mb-4">
+                <p className="text-slate-600 text-lg mb-6">
                   Pricing, room details, what&apos;s included, testimonials from previous roommates, and how to schedule a tour.
                 </p>
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
-                  Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
+                <span className="inline-flex items-center gap-1 text-base font-bold text-green group-hover:text-navy transition-colors">
+                  Explore <Icon name="ArrowLeft" className="w-5 h-5 rotate-180" />
                 </span>
               </button>
 
               <button
                 onClick={() => setView("area")}
-                className="group rounded-2xl border-2 border-navy-200 bg-white p-8 text-left
+                className="group rounded-2xl border-2 border-navy-200 bg-white p-10 text-left
                            transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green
                            focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
                 aria-label="View details about the area"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 rounded-xl bg-navy group-hover:bg-green transition-colors">
-                    <Icon name="MapPin" className="w-8 h-8 text-white" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-4 rounded-xl bg-navy group-hover:bg-green transition-colors">
+                    <Icon name="MapPin" className="w-12 h-12 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-navy">About The Area</h3>
+                  <h3 className="text-3xl font-bold text-navy">About The Area</h3>
                 </div>
-                <p className="text-slate-600 mb-4">
+                <p className="text-slate-600 text-lg mb-6">
                   Walden town info, nearby attractions, Watchtower facilities, Kingdom Halls, and Assembly Halls within driving distance.
                 </p>
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-green group-hover:text-navy transition-colors">
-                  Explore <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
+                <span className="inline-flex items-center gap-1 text-base font-bold text-green group-hover:text-navy transition-colors">
+                  Explore <Icon name="ArrowLeft" className="w-5 h-5 rotate-180" />
                 </span>
               </button>
             </div>
@@ -539,7 +539,7 @@ export default function ApplicantSection(): React.ReactElement {
                   <div>
                     <h3 className="text-xl font-bold text-navy mb-3 flex items-center gap-2">
                       <Icon name="Building" className="w-5 h-5" />
-                      Kingdom Halls within 70 miles
+                      Kingdom Halls within 100 miles
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       {kingdomHalls.map((hall) => (
