@@ -376,9 +376,17 @@ export default function ApplicantDetail({
                   <span>700</span>
                   <span>850</span>
                 </div>
-                <div className="h-3 rounded-full bg-navy-100 overflow-hidden">
+                <div className="relative h-3 rounded-full overflow-hidden bg-gradient-to-r from-red-500 via-yellow-400 to-green-500">
+                  {/* Arrow indicator at score position */}
                   <div
-                    className="h-full rounded-full bg-green transition-all duration-500"
+                    className="absolute top-0 -translate-x-1/2 -translate-y-1"
+                    style={{ left: `${((applicant.screeningReport.creditScore - 350) / 500) * 100}%` }}
+                  >
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-navy" />
+                  </div>
+                  {/* Semi-transparent fill overlay */}
+                  <div
+                    className="h-full bg-white/40 rounded-r-full"
                     style={{ width: `${((applicant.screeningReport.creditScore - 350) / 500) * 100}%` }}
                   />
                 </div>
