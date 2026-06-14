@@ -321,8 +321,8 @@ export const applicants: Applicant[] = [
     email: "adamssawyer95@gmail.com",
     phone: "(609) 351-7720",
     attachments: [
-      { id: "img1", label: "ID Photo", filename: "image.jpg", url: "#" },
-      { id: "paystub", label: "Pay Stub", filename: "CheckStub.pdf", url: "#" },
+      { id: "img1", label: "ID Photo", filename: "sawyeradamsdl.jpg", url: "/sawyeradamsdl.jpg" },
+      { id: "paystub", label: "Pay Stub", filename: "sawyeradamsCheckStub.pdf", url: "/sawyeradamsCheckStub.pdf" },
     ],
     notes: "Application complete. Screening report received 06/13/2026. Income verification flagged: documents do not span 28 consecutive days.",
     applicationDetails: {
