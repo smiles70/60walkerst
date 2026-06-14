@@ -447,10 +447,10 @@ Classify failure
 | 18 | Production errors invisible to planning without a feedback loop | Auth bug recurred across 3 sessions | Observability Agent writes production_signals.md |
 | 19 | "Minor" dependency bumps can break contract shapes | A patch version of a UI library changed a prop type | Dependency updates score as GATED in Triage Decision Matrix |
 | 20 | Merge conflict markers in workflow YAML break CI | Unresolved markers in deploy.yml caused workflow failure | Add "grep for conflict markers" to Audit Agent pre-commit checklist |
-| 21 | **Never run `npm run deploy` without checking the pipeline first** | Ran `scripts/deploy.js` which uses `--allow-anonymous --create-site`, creating a NEW Netlify site instead of deploying to the existing `60walkerst.com` | Always read `.github/workflows/deploy.yml` and determine the correct deploy pathway BEFORE running any deploy command |
-| 22 | **GitHub Actions CI/CD is the single source of truth for production** | The real `60walkerst.com` deploys via GitHub Actions with `NETLIFY_SITE_ID` secret; local anonymous deploys create ephemeral sites with different URLs | Production deploys MUST go through GitHub push → CI → Netlify. Local deploy scripts are for emergency/testing ONLY |
-| 23 | **Missing GitHub secrets block production deploys silently** | `NETLIFY_AUTH_TOKEN` was likely expired/missing, causing CI "Deploy to Netlify" step to fail after a successful build | Pre-deploy check MUST verify GitHub Actions secrets exist and are valid before pushing |
-| 24 | **Never assume deploy succeeded without post-deploy validation** | Deploy script reported "success" but with `undefined` URL; no one checked if changes were actually live on the target domain | Post-deploy validation is MANDATORY — diff source files against live site, run smoke tests, verify changes are visible |
+| 21 | **Never run `npm run deploy` without reading docs/DEPLOYMENT.md first** | Ran `scripts/deploy.js` which uses `--allow-anonymous --create-site`, creating a NEW random Netlify site; meanwhile the real `60walkerst.com` deploys via Cloudflare Pages Git integration | Always read `docs/DEPLOYMENT.md` to confirm the current deploy pathway BEFORE running any deploy command |
+| 22 | **Cloudflare Pages Git integration is the single source of truth for production** | The real `60walkerst.com` deploys via Cloudflare Pages connected to GitHub (`smiles70/60walkerst`, branch `master`, build command `npm run build`, output `dist`); GitHub Actions workflow is stale/legacy and never worked | Production deploys MUST go through GitHub push → Cloudflare Pages auto-build. The `.github/workflows/deploy.yml` and `scripts/deploy.js` are NOT the production pathway |
+| 23 | **Disconnected Git integration blocks deploys silently** | Cloudflare Pages Git connection (`smiles70/60walkerst` → `master`) was disconnected; pushes to `master` stopped triggering builds with no error notification | Pre-deploy check MUST verify Cloudflare Dashboard shows Git repository as connected with green checkmark before pushing |
+| 24 | **Never assume deploy succeeded without post-deploy validation** | Deploy script reported "success" but with `undefined` URL; no one checked if changes were actually live on the target domain | Post-deploy validation is MANDATORY — check Cloudflare Dashboard Deployments tab for build success, verify live site URL with `?nocache=1`, confirm changes are visible |
 
 ---
 
@@ -476,8 +476,8 @@ Classify failure
 18. **Session Open loads production signals** — Research and Design agents must incorporate them.
 19. **No baseline, no perf gate** — if docs/06-performance.md has no baseline, run /perf-baseline first.
 20. **Check for merge conflict markers before every push** — grep for conflict markers in Audit Agent.
-21. **Pre-deploy check is MANDATORY** — verify deploy pathway (CI vs local), check secrets, diff against `origin/master`, and confirm no uncommitted changes before pushing.
-22. **Post-deploy validation is MANDATORY** — verify target URL, diff committed files against live site, run smoke tests, and confirm changes are visible in browser before declaring deploy success.
+21. **Pre-deploy check is MANDATORY** — read `docs/DEPLOYMENT.md`, verify Cloudflare Pages Git integration is connected, confirm `npm run build` passes locally, diff against `origin/master`, and confirm no uncommitted changes before pushing.
+22. **Post-deploy validation is MANDATORY** — check Cloudflare Dashboard Deployments for build success, verify `https://60walkerst.com?nocache=1`, and confirm changes are visible in browser before declaring deploy success.
 
 ---
 
