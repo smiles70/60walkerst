@@ -360,6 +360,10 @@ Expected: All existing tests pass. New applicant does not break tests.
 | 8 | `tradelineSummaries` missing "Total" row | Table looks incomplete | Always add Total row as last element |
 | 9 | `submittedDate` > `moveInDate` | Illogical timeline | Verify dates make sense |
 | 10 | `journeyStage` as string | TypeScript error | Use number, not string |
+| 11 | `screeningReport.employers` left empty | Employment card renders with title but no content | Copy from `applicationDetails.jobs` or use conditional rendering |
+| 12 | `inquiries` as string `"-"` | TypeScript error — field typed as `number` | Use `0` for no inquiries; update interface if strings needed |
+| 13 | Documents in `docs/` but not `public/` | Attachment URLs 404 | Copy files to `public/` AND update `attachments[].url` to absolute paths |
+| 14 | Credit score bar is solid green | Does not match reference rainbow gradient with arrow | Compare rendered output to user's reference screenshot before declaring done |
 
 ---
 
@@ -414,8 +418,12 @@ screeningReport: {
 - [ ] `npm run build` passes with zero errors
 - [ ] `npm test` passes with all existing tests green
 - [ ] Manual UI check: applicant card renders, all detail tabs render
+- [ ] `screeningReport.employers` is populated (not empty) if applicant has job history
+- [ ] `inquiries` is a number (0 for none), never a string
+- [ ] All documents copied to `public/` and `attachments[].url` points to real paths
+- [ ] Credit score bar matches reference design (rainbow gradient + arrow)
 
 ---
 
-*Skill version 1.0 — 60 Walker St Household Portal*
+*Skill version 1.1 — 60 Walker St Household Portal*
 *Last updated: 2026-06-14*
