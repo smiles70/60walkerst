@@ -25,8 +25,9 @@ export const houseRules: RuleCategory[] = [
     icon: "Sparkles",
     title: "Cleaning Rotation",
     items: [
-      "Roommates A & B",
+      "Roommates A, B & C",
       "Swap Weekly",
+      "Click to view full schedule",
     ],
   },
   {

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "@/components/ui/icon";
 import {
   houseRules,
@@ -9,15 +9,33 @@ import {
   keyReminder,
   type RuleCategory,
 } from "../data/house-rules";
+import ChoreChart from "./chore-chart";
 
-function InfoCard({ category }: { category: RuleCategory }) {
+function InfoCard({ category, onClick }: { category: RuleCategory; onClick?: () => void }) {
   const baseCardClasses = category.highlight
     ? "border-green bg-green-50"
     : "border-navy-200 bg-white hover:border-green";
 
+  const isClickable = !!onClick;
+
   return (
     <div
-      className={`relative rounded-xl border-2 p-5 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 ${baseCardClasses}`}
+      onClick={onClick}
+      role={isClickable ? "button" : undefined}
+      tabIndex={isClickable ? 0 : undefined}
+      onKeyDown={
+        isClickable
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick?.();
+              }
+            }
+          : undefined
+      }
+      className={`relative rounded-xl border-2 p-5 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 ${baseCardClasses} ${
+        isClickable ? "cursor-pointer focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2" : ""
+      }`}
     >
       <div className="flex items-center gap-3 mb-3">
         <div className={`p-2 rounded-lg ${category.highlight ? "bg-green" : "bg-navy"}`}>
@@ -35,18 +53,32 @@ function InfoCard({ category }: { category: RuleCategory }) {
           </li>
         ))}
       </ul>
+      {isClickable && (
+        <div className="mt-3 flex items-center gap-1 text-sm font-medium text-green">
+          <Icon name="ArrowLeft" className="w-4 h-4 rotate-180" />
+          <span>View schedule</span>
+        </div>
+      )}
     </div>
   );
 }
 
 export function WelcomeContent() {
+  const [showChoreChart, setShowChoreChart] = useState(false);
+
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {houseRules.map((category) => (
-          <InfoCard key={category.id} category={category} />
+          <InfoCard
+            key={category.id}
+            category={category}
+            onClick={category.id === "cleaning" ? () => setShowChoreChart(true) : undefined}
+          />
         ))}
       </div>
+
+      {showChoreChart && <ChoreChart onClose={() => setShowChoreChart(false)} />}
 
       <div className="rounded-xl border-2 border-amber bg-amber-50 p-4 flex items-start gap-3">
         <div className="p-1.5 bg-amber rounded-lg shrink-0">
