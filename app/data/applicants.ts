@@ -406,7 +406,9 @@ export const applicants: Applicant[] = [
         { address: "3308 NEW PROSPECT RD, PINE BUSH, NY 12566", status: "Current", date: "05/01/2024" },
         { address: "181 N DRURY LN, NEWBURGH, NY 12550", status: "Past", date: "07/01/2023" },
       ],
-      employers: [],
+      employers: [
+        { employer: "Eastern Orange Ambulatory Surgical Center", jobTitle: "Registered Nurse", date: "04/01/2022" },
+      ],
       profileSummary: {
         tradelines: 20,
         collections: "-",
