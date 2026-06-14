@@ -6,9 +6,17 @@ import ApplicantSection from "./sections/applicant";
 import TenantSection from "./sections/tenant";
 import ManagementLogin from "./sections/management-login";
 import ManagementDashboard from "./sections/management-dashboard";
+import ApplicantsList from "./sections/applicants-list";
+import ApplicantDetail from "./sections/applicant-detail";
 import { Icon } from "@/components/ui/icon";
 
-type ViewMode = "hero" | "applicant" | "tenant" | "management";
+type ViewMode =
+  | "hero"
+  | "applicant"
+  | "tenant"
+  | "management"
+  | "management-applicants"
+  | "management-applicant-detail";
 
 function BackButton({ onClick }: { onClick: () => void }) {
   return (
@@ -28,6 +36,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
 export default function Home(): React.ReactElement {
   const [view, setView] = useState<ViewMode>("hero");
   const [mgmtAuthenticated, setMgmtAuthenticated] = useState(false);
+  const [selectedApplicantId, setSelectedApplicantId] = useState<string | null>(null);
 
   return (
     <main className="min-h-screen">
@@ -87,7 +96,7 @@ export default function Home(): React.ReactElement {
             {mgmtAuthenticated ? (
               <ManagementDashboard
                 onLogout={() => setMgmtAuthenticated(false)}
-                onViewApplicants={() => {}}
+                onViewApplicants={() => setView("management-applicants")}
               />
             ) : (
               <ManagementLogin
@@ -95,6 +104,49 @@ export default function Home(): React.ReactElement {
                 onCancel={() => setView("hero")}
               />
             )}
+          </div>
+        </>
+      )}
+
+      {view === "management-applicants" && (
+        <>
+          <div className="sticky top-0 z-50 bg-navy border-b-2 border-navy-700 shadow-md">
+            <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Icon name="Users" className="w-5 h-5 text-green" />
+                <span className="text-white font-bold">60 Walker St — Applicants</span>
+              </div>
+              <BackButton onClick={() => setView("management")} />
+            </div>
+          </div>
+          <div className="py-12 px-4 max-w-5xl mx-auto">
+            <ApplicantsList
+              onSelect={(id) => {
+                setSelectedApplicantId(id);
+                setView("management-applicant-detail");
+              }}
+              onBack={() => setView("management")}
+            />
+          </div>
+        </>
+      )}
+
+      {view === "management-applicant-detail" && selectedApplicantId && (
+        <>
+          <div className="sticky top-0 z-50 bg-navy border-b-2 border-navy-700 shadow-md">
+            <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Icon name="FileText" className="w-5 h-5 text-green" />
+                <span className="text-white font-bold">60 Walker St — Applicant Detail</span>
+              </div>
+              <BackButton onClick={() => setView("management-applicants")} />
+            </div>
+          </div>
+          <div className="py-12 px-4 max-w-5xl mx-auto">
+            <ApplicantDetail
+              applicantId={selectedApplicantId}
+              onBack={() => setView("management-applicants")}
+            />
           </div>
         </>
       )}
