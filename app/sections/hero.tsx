@@ -6,11 +6,13 @@ import { Icon } from "@/components/ui/icon";
 interface HeroSectionProps {
   onSelectApplicant: () => void;
   onSelectTenant: () => void;
+  onSelectManagement: () => void;
 }
 
 export default function HeroSection({
   onSelectApplicant,
   onSelectTenant,
+  onSelectManagement,
 }: HeroSectionProps): React.ReactElement {
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
@@ -73,6 +75,18 @@ export default function HeroSection({
           >
             <Icon name="Home" className="w-6 h-6" />
             Tenant
+          </button>
+          <button
+            onClick={onSelectManagement}
+            className="opacity-0 animate-hero-scale-in animation-delay-900 w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-10 rounded-2xl bg-navy text-white text-lg font-bold
+                       shadow-2xl shadow-black/25 backdrop-blur-sm
+                       hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] hover:bg-navy-700 active:translate-y-0 active:scale-[0.98] transition-all duration-200
+                       focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2
+                       min-h-[64px] min-w-[200px]"
+            aria-label="Management login portal"
+          >
+            <Icon name="Shield" className="w-6 h-6" />
+            Management
           </button>
         </div>
       </div>
