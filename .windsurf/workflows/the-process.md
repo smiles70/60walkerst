@@ -419,6 +419,8 @@ Classify failure
 | error-taxonomy | Classify failures; standard remediation playbook |
 | performance-baseline | Baseline init, .lighthouserc.json generation |
 | production-signals | Signal schema, browser error collection |
+| **pre-deploy-check** | **MANDATORY before every deploy — verify pipeline, secrets, branch, build, diff** |
+| **post-deploy-validate** | **MANDATORY after every deploy — verify CI success, site reachable, changes visible** |
 
 ---
 
@@ -445,6 +447,10 @@ Classify failure
 | 18 | Production errors invisible to planning without a feedback loop | Auth bug recurred across 3 sessions | Observability Agent writes production_signals.md |
 | 19 | "Minor" dependency bumps can break contract shapes | A patch version of a UI library changed a prop type | Dependency updates score as GATED in Triage Decision Matrix |
 | 20 | Merge conflict markers in workflow YAML break CI | Unresolved markers in deploy.yml caused workflow failure | Add "grep for conflict markers" to Audit Agent pre-commit checklist |
+| 21 | **Never run `npm run deploy` without checking the pipeline first** | Ran `scripts/deploy.js` which uses `--allow-anonymous --create-site`, creating a NEW Netlify site instead of deploying to the existing `60walkerst.com` | Always read `.github/workflows/deploy.yml` and determine the correct deploy pathway BEFORE running any deploy command |
+| 22 | **GitHub Actions CI/CD is the single source of truth for production** | The real `60walkerst.com` deploys via GitHub Actions with `NETLIFY_SITE_ID` secret; local anonymous deploys create ephemeral sites with different URLs | Production deploys MUST go through GitHub push → CI → Netlify. Local deploy scripts are for emergency/testing ONLY |
+| 23 | **Missing GitHub secrets block production deploys silently** | `NETLIFY_AUTH_TOKEN` was likely expired/missing, causing CI "Deploy to Netlify" step to fail after a successful build | Pre-deploy check MUST verify GitHub Actions secrets exist and are valid before pushing |
+| 24 | **Never assume deploy succeeded without post-deploy validation** | Deploy script reported "success" but with `undefined` URL; no one checked if changes were actually live on the target domain | Post-deploy validation is MANDATORY — diff source files against live site, run smoke tests, verify changes are visible |
 
 ---
 
@@ -470,6 +476,8 @@ Classify failure
 18. **Session Open loads production signals** — Research and Design agents must incorporate them.
 19. **No baseline, no perf gate** — if docs/06-performance.md has no baseline, run /perf-baseline first.
 20. **Check for merge conflict markers before every push** — grep for conflict markers in Audit Agent.
+21. **Pre-deploy check is MANDATORY** — verify deploy pathway (CI vs local), check secrets, diff against `origin/master`, and confirm no uncommitted changes before pushing.
+22. **Post-deploy validation is MANDATORY** — verify target URL, diff committed files against live site, run smoke tests, and confirm changes are visible in browser before declaring deploy success.
 
 ---
 
@@ -632,8 +640,9 @@ jobs:
 4. Read `.ai/sessions/production_signals.md` — inject production error rates, regressions
    - If file is older than 7 days, flag as stale
    - If file does not exist, skip silently
-5. Read last 3 Lessons Learned entries
-6. Output: structured context block injected into all downstream agents
+5. Read last 3 Lessons Learned entries (especially #21-24 for deploy safety)
+6. Read `.ai/skills/pre-deploy-check/SKILL.md` and `.ai/skills/post-deploy-validate/SKILL.md`
+7. Output: structured context block injected into all downstream agents
 
 ### Checkpoint Protocol (after every agent)
 Write to `.ai/sessions/active_checkpoint.md`:
@@ -649,7 +658,8 @@ Write to `.ai/sessions/active_checkpoint.md`:
 2. Update `docs/06-performance.md` with latest Lighthouse scores and bundle sizes (if performance gate ran)
 3. Append new Lessons Learned entries (if any)
 4. Update task graph: mark completed, flag blocked, list next
-5. Execute on pipeline SUCCESS and FAILURE — this step is never skipped
+5. **If deploy occurred:** Attach pre-deploy check summary and post-deploy validation report to session artifact
+6. Execute on pipeline SUCCESS and FAILURE — this step is never skipped
 
 ---
 
