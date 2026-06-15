@@ -28,20 +28,6 @@ export const dashboardWidgets: ManagementWidget[] = [
     icon: "Wrench",
     color: "bg-navy",
   },
-  {
-    id: "utilities",
-    title: "Utilities Due",
-    value: "$0",
-    icon: "Zap",
-    color: "bg-amber",
-  },
-  {
-    id: "documents",
-    title: "Documents",
-    value: "3 Files",
-    icon: "FileText",
-    color: "bg-navy",
-  },
 ];
 
 export const managementDocuments = [

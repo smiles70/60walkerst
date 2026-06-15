@@ -128,7 +128,7 @@ export const applicants: Applicant[] = [
     moveInDate: "06/01/2026",
     submittedDate: "06/03/2026",
     status: "complete",
-    journeyStage: 2, // At Screening
+    journeyStage: 4, // Decision
     email: "4acarnail@gmail.com",
     phone: "(314) 566-0963",
     attachments: [
@@ -305,7 +305,7 @@ export const applicants: Applicant[] = [
     moveInDate: "08/01/2026",
     submittedDate: "06/13/2026",
     status: "complete",
-    journeyStage: 2,
+    journeyStage: 4, // Decision
     email: "adamssawyer95@gmail.com",
     phone: "(609) 351-7720",
     attachments: [
