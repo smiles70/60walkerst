@@ -5,6 +5,13 @@
  */
 export const MANAGEMENT_PIN = "606060";
 
+export const MANAGEMENT_EMAILS = [
+  "stmiles1@yahoo.com",
+  "kimemiles@gmail.com",
+  "sydni.miles01@gmail.com",
+  "mustangpete1966@gmail.com",
+];
+
 export interface ManagementWidget {
   id: string;
   title: string;
