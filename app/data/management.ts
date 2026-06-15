@@ -4,6 +4,7 @@
  * Change this value to rotate the PIN
  */
 export const MANAGEMENT_PIN = "606060";
+export const TENANT_PIN = "707201";
 
 export const MANAGEMENT_EMAILS = [
   "stmiles1@yahoo.com",

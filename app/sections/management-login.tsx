@@ -2,26 +2,41 @@
 
 import React, { useState } from "react";
 import { Icon } from "@/components/ui/icon";
-import { MANAGEMENT_PIN, MANAGEMENT_EMAILS } from "../data/management";
+import {
+  MANAGEMENT_PIN,
+  MANAGEMENT_EMAILS,
+} from "../data/management";
 
 interface ManagementLoginProps {
   onSuccess: () => void;
   onCancel: () => void;
+  pin?: string;
+  emails?: string[];
+  title?: string;
+  subtitlePin?: string;
+  subtitleEmail?: string;
+  persistAuth?: boolean;
 }
 
 export default function ManagementLogin({
   onSuccess,
   onCancel,
+  pin = MANAGEMENT_PIN,
+  emails = MANAGEMENT_EMAILS,
+  title = "Management Access",
+  subtitlePin = "Enter the management PIN to continue",
+  subtitleEmail = "Enter your whitelisted email address",
+  persistAuth = false,
 }: ManagementLoginProps): React.ReactElement {
   const [step, setStep] = useState<"pin" | "email">("pin");
-  const [pin, setPin] = useState("");
+  const [inputPin, setInputPin] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const [shake, setShake] = useState(false);
 
   function handlePinSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (pin === MANAGEMENT_PIN) {
+    if (inputPin === pin) {
       setError(false);
       setStep("email");
     } else {
@@ -34,12 +49,14 @@ export default function ManagementLogin({
   function handleEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
     const normalizedEmail = email.trim().toLowerCase();
-    const isWhitelisted = MANAGEMENT_EMAILS.some(
+    const isWhitelisted = emails.some(
       (allowed) => allowed.toLowerCase() === normalizedEmail
     );
 
     if (isWhitelisted) {
-      localStorage.setItem("mgmtAuth", "true");
+      if (persistAuth) {
+        localStorage.setItem("mgmtAuth", "true");
+      }
       setError(false);
       onSuccess();
     } else {
@@ -55,11 +72,9 @@ export default function ManagementLogin({
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-navy mb-4">
           <Icon name="Lock" className="w-8 h-8 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-navy mb-2">Management Access</h2>
+        <h2 className="text-2xl font-bold text-navy mb-2">{title}</h2>
         <p className="text-slate-600">
-          {step === "pin"
-            ? "Enter the management PIN to continue"
-            : "Enter your whitelisted email address"}
+          {step === "pin" ? subtitlePin : subtitleEmail}
         </p>
       </div>
 
@@ -76,9 +91,9 @@ export default function ManagementLogin({
             type="password"
             inputMode="numeric"
             maxLength={6}
-            value={pin}
+            value={inputPin}
             onChange={(e) => {
-              setPin(e.target.value.replace(/\D/g, ""));
+              setInputPin(e.target.value.replace(/\D/g, ""));
               setError(false);
             }}
             className={`w-full px-4 py-3 rounded-xl border-2 text-center text-2xl font-bold tracking-widest
@@ -101,7 +116,7 @@ export default function ManagementLogin({
             </button>
             <button
               type="submit"
-              disabled={pin.length !== 6}
+              disabled={inputPin.length !== 6}
               className="flex-1 py-3 px-4 rounded-xl bg-green text-white font-bold
                          hover:bg-green-600 active:bg-green-700 transition-colors
                          disabled:opacity-40 disabled:cursor-not-allowed"

@@ -9,6 +9,7 @@ import ManagementDashboard from "./sections/management-dashboard";
 import ApplicantsList from "./sections/applicants-list";
 import ApplicantDetail from "./sections/applicant-detail";
 import { Icon } from "@/components/ui/icon";
+import { TENANT_PIN } from "./data/management";
 
 type ViewMode =
   | "hero"
@@ -36,6 +37,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
 export default function Home(): React.ReactElement {
   const [view, setView] = useState<ViewMode>("hero");
   const [mgmtAuthenticated, setMgmtAuthenticated] = useState(false);
+  const [tenantAuthenticated, setTenantAuthenticated] = useState(false);
   const [selectedApplicantId, setSelectedApplicantId] = useState<string | null>(null);
 
   return (
@@ -43,7 +45,10 @@ export default function Home(): React.ReactElement {
       {view === "hero" && (
         <HeroSection
           onSelectApplicant={() => setView("applicant")}
-          onSelectTenant={() => setView("tenant")}
+          onSelectTenant={() => {
+            setTenantAuthenticated(false);
+            setView("tenant");
+          }}
           onSelectManagement={() => {
             setMgmtAuthenticated(false);
             setView("management");
@@ -77,7 +82,20 @@ export default function Home(): React.ReactElement {
               <BackButton onClick={() => setView("hero")} />
             </div>
           </div>
-          <TenantSection />
+          <div className="py-12 px-4 max-w-5xl mx-auto">
+            {tenantAuthenticated ? (
+              <TenantSection />
+            ) : (
+              <ManagementLogin
+                pin={TENANT_PIN}
+                title="Tenant Access"
+                subtitlePin="Enter the tenant PIN to continue"
+                subtitleEmail="Enter your whitelisted email address"
+                onSuccess={() => setTenantAuthenticated(true)}
+                onCancel={() => setView("hero")}
+              />
+            )}
+          </div>
         </>
       )}
 
@@ -100,6 +118,7 @@ export default function Home(): React.ReactElement {
               />
             ) : (
               <ManagementLogin
+                persistAuth={true}
                 onSuccess={() => setMgmtAuthenticated(true)}
                 onCancel={() => setView("hero")}
               />

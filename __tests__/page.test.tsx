@@ -27,9 +27,27 @@ describe("Home Page", () => {
     expect(screen.getByRole("button", { name: /Back/i })).toBeInTheDocument();
   });
 
-  it("shows tenant portal cards when Tenant button is clicked", () => {
+  it("shows tenant portal cards after PIN + email auth", () => {
     render(<Home />);
     fireEvent.click(screen.getByRole("button", { name: /Tenant/i }));
+
+    // Should show tenant login form
+    expect(screen.getByRole("heading", { name: /Tenant Access/i })).toBeInTheDocument();
+
+    // Enter tenant PIN
+    const pinInput = screen.getByPlaceholderText("_ _ _ _ _ _");
+    fireEvent.change(pinInput, { target: { value: "707201" } });
+    fireEvent.click(screen.getByRole("button", { name: /Enter/i }));
+
+    // Should show email step
+    expect(screen.getByLabelText(/Email Address/i)).toBeInTheDocument();
+
+    // Enter whitelisted email
+    const emailInput = screen.getByLabelText(/Email Address/i);
+    fireEvent.change(emailInput, { target: { value: "stmiles1@yahoo.com" } });
+    fireEvent.click(screen.getByRole("button", { name: /Verify/i }));
+
+    // Now tenant portal cards should be visible
     expect(screen.getByRole("heading", { name: /60 Walker St — Tenant Portal/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /View Welcome Home/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /View Monthly Share/i })).toBeInTheDocument();
